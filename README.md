@@ -2,6 +2,8 @@ This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-
 
 ## Getting Started
 
+### CLONE THE REPO, CREATE A LOCAL BRANCH (e.g git checkout -b teamA) AND WORK WITH YOUR TEAM MEMBERS IN THAT BRANCH
+
 First, run the development server:
 
 ```bash
