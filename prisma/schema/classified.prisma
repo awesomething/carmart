@@ -1,0 +1,83 @@
+model Classified {
+    id Int @id @default(autoincrement())
+    views Int @default(0)
+    slug String @unique
+    vrm String?
+    title String?
+    description String?
+    year Int
+    odo_reading Int @default(0)
+    doors Int @default(2)
+    seats Int @default(5)
+    price Int @default(0)
+    make_id Int
+    make Make @relation(fields: [make_id], references: [id])
+    model_id Int
+    model Model @relation(fields: [model_id], references: [id])
+    model_variant_id Int
+    model_variant ModelVariant @relation(fields: [model_variant_id], references: [id])
+    ulez_compliance ULEZCompliance @default(EXEMPT)
+    transmission Transmission @default(MANUAL)
+    colour Colour @default(BLACK)
+    fuel_type FuelType @default(PETROL)
+    status ClassifiedStatus @default(DRAFT)
+    bodyType BodyType @default(SEDAN)
+    odo_unit OdoUnit @default(MILES) 
+    currency Currency @default(GBP)
+    images Image[]
+    customers Customer[]
+    created_at   DateTime    @default(now())
+    updated_at   DateTime    @updatedAt
+
+    @@index([make_id, model_id], name: "index_make_model")
+    @@index([status], name: "index_status")
+    @@index([price], name: "index_price")
+    @@map("classifieds")
+
+}
+
+enum Currency {
+    GBP
+    USD
+    EUR
+    NGN
+}
+enum OdoUnit {
+    MILES
+    KILOMETERS
+}
+
+enum ULEZCompliance {
+    EXEMPT
+    NONEXEMPT
+}
+
+enum Transmission {
+    MANUAL
+    AUTOMATIC
+}
+
+enum Colour {
+    BLACK
+    GREY
+    BLUE
+}
+enum FuelType {
+    PETROL
+    DIESEL
+    WATER
+}
+
+enum BodyType {
+  SEDAN
+  HATCHBACK
+  SUV
+  COUPE
+  CONVERTIBLE
+  WAGON
+}
+enum ClassifiedStatus {
+  LIVE
+  DRAFT
+  SOLD
+}
