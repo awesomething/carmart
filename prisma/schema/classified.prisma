@@ -14,8 +14,8 @@ model Classified {
     make Make @relation(fields: [make_id], references: [id])
     model_id Int
     model Model @relation(fields: [model_id], references: [id])
-    model_variant_id Int
-    model_variant ModelVariant @relation(fields: [model_variant_id], references: [id])
+    model_variant_id Int?
+    model_variant ModelVariant? @relation(fields: [model_variant_id], references: [id])
     ulez_compliance ULEZCompliance @default(EXEMPT)
     transmission Transmission @default(MANUAL)
     colour Colour @default(BLACK)
