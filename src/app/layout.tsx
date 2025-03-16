@@ -1,6 +1,9 @@
-import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import type { Metadata } from "next"; 
+import { Mulish, Roboto } from "next/font/google";
 import "./globals.css";
+import { Toaster } from "react-components/ui/toaster";
+import NextTopLoader from "nextjs-toploader";
+import { NextAdapter } from "next/adapters/next/app";
 
 
 
@@ -8,6 +11,20 @@ export const metadata: Metadata = {
   title: "Car Dealership Website",
   description: "This is a car dealership website",
 };
+const mulish = Mulish({
+  weight: "variable",
+  subsets: ["latin"],
+  variable: "--font-heading",
+  display: "swap",
+});
+
+const roboto = Roboto({
+  weight: "400",
+  subsets: ["latin"],
+  variable: "--font-body",
+  display: "swap",
+});
+
 
 export default function RootLayout({
   children,
@@ -16,9 +33,19 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className="antialiased">
-        {children}
+      <body
+        className={cn(
+          "antialiased overscroll-none bg-background",
+          roboto.variable,
+          mulish.variable,
+        )}
+      >
+        <NextTopLoader showSpinner={false} />
+        <NextAdapter>{children}</NextAdapter>
+        <Toaster />
+
       </body>
+
     </html>
   );
 }
