@@ -1,6 +1,7 @@
 import { ClassifiedCard } from "@components/inventory/classified-card";
-import type { AwaitedPageProps, PageProps } from "@config/types";
-import { prisma } from "@lib/prisma";
+import type { AwaitedPageProps, PageProps } from "../../../config/types";
+import type { Prisma, PrismaClient } from "@prisma/client";
+import { prisma } from "@/lib/prisma";
 
 const getInventory = async (searchParams: AwaitedPageProps["searchParams"]) => {
   return prisma.classified.findMany({
