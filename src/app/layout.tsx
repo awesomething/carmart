@@ -1,9 +1,10 @@
+import { Toaster } from "sonner";
 import type { Metadata } from "next"; 
+import { cn } from "@/lib/utils";
 import { Mulish, Roboto } from "next/font/google";
 import "./globals.css";
-import { Toaster } from "react-components/ui/toaster";
 import NextTopLoader from "nextjs-toploader";
-import { NextAdapter } from "next/adapters/next/app";
+import { NuqsAdapter } from "nuqs/adapters/next/app";
 
 
 
@@ -25,7 +26,7 @@ const roboto = Roboto({
   display: "swap",
 });
 
-
+ 
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -41,7 +42,7 @@ export default function RootLayout({
         )}
       >
         <NextTopLoader showSpinner={false} />
-        <NextAdapter>{children}</NextAdapter>
+        <NuqsAdapter>{children}</NuqsAdapter>
         <Toaster />
 
       </body>
