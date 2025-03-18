@@ -1,4 +1,4 @@
-import { imageSources } from "@/config/constants";
+import { imageSources } from "../../src/config/constants";
 import type { Prisma, PrismaClient } from "@prisma/client"
 import { faker } from "@faker-js/faker";
 import {createPngDataUri} from "unlazy/thumbhash";

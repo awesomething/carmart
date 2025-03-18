@@ -1,6 +1,7 @@
-import { ClassifiedCard } from "@components/inventory/classified-card";
-import type { AwaitedPageProps, PageProps } from "@config/types";
-import { prisma } from "@lib/prisma";
+import { ClassifiedCard } from "@/components/inventory/classified-card";
+import { ClassifiedsList } from "@/components/inventory/classified-list";
+import type { AwaitedPageProps, PageProps } from "../../../config/types";
+import { prisma } from "../../../lib/prisma";
 
 const getInventory = async (searchParams: AwaitedPageProps["searchParams"]) => {
   return prisma.classified.findMany({
@@ -14,10 +15,8 @@ export default async function InventoryPage(props: PageProps) {
   const count = await prisma.classified.count();
 
   return (
-    <div className="grid grid-cols-3">
-      {classifieds.map((classified) => {
-        return <ClassifiedCard key={classified.id} classified={classified} />;
-      })}
-    </div>
+    <>
+        <ClassifiedsList classifieds={classifieds}/>
+    </>
   );
 }

@@ -1,3 +1,5 @@
+import { Prisma } from "@prisma/client";
+
 type Params = {
     [x: string]: string | string[];
   };
@@ -11,4 +13,16 @@ type Params = {
     params: Awaited<PageProps["params"]>;
     searchParams: Awaited<PageProps["searchParams"]>;
   };
+
+  export type ClassifiedWithImages = Prisma.ClassifiedGetPayload<{
+    include:{
+      images: true;
+    }
+  }>;
+
+  export enum MultiStepFormEnum {
+    WELCOME = 1,
+    SELECT_DATE =2,
+    SUBMIT_DETAILS =3,
+  }
   
