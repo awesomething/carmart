@@ -8,7 +8,11 @@ const Toaster = ({ ...props }: ToasterProps) => {
 
   return (
     <Sonner
+<<<<<<< HEAD
       theme={theme as ToasterProps["theme"]  ?? "system"}
+=======
+      theme={theme as ToasterProps["theme"] ?? "system"}
+>>>>>>> 452f4be862625baa0f1d244855a3349e6942a815
       className="toaster group"
       style={
         {

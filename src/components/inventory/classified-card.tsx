@@ -9,13 +9,13 @@ import { Button } from "@/components/ui/button";
 import { MultiStepFormEnum } from "@/config/types";
 
 type ClassifiedWithImages = Prisma.ClassifiedGetPayload<{
-  include: {
-    images: true;
-  };
+    include: {
+        images: true;
+    };
 }>;
 
 interface ClassifiedCardProps {
-  classified: ClassifiedWithImages;
+    classified: ClassifiedWithImages;
 }
 
 function formatNumber(num: number | null, options?: Intl.NumberFormatOptions) {
