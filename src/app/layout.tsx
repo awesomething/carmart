@@ -1,13 +1,9 @@
-import { Toaster } from "sonner";
+
 import type { Metadata } from "next"; 
-import { cn } from "@/lib/utils";
 import { Mulish, Roboto } from "next/font/google";
 import "./globals.css";
-<<<<<<< HEAD
 import { cn } from "@/lib/utils";
 import { Toaster } from "sonner";
-=======
->>>>>>> 452f4be862625baa0f1d244855a3349e6942a815
 import NextTopLoader from "nextjs-toploader";
 import { NuqsAdapter } from "nuqs/adapters/next/app";
 
