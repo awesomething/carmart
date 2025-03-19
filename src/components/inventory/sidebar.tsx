@@ -12,3 +12,4 @@ focus:ring-2 focus:ring-blue-500"
 <div className="p-4 space-y-2">
   <TaxonomyFilters />
 </div>
+ 

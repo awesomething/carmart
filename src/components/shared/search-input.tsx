@@ -1,8 +1,10 @@
 "use client"
 
 import { useQueryState } from 'nuqs';
-import { useCallback, useRef } from 'react';
+import { ChangeEvent, useCallback, useRef } from 'react';
 import debounce from "debounce";
+import { SearchIcon, XIcon } from 'lucide-react';
+import { cn } from '@/lib/utils';
 
 function debounceFunc<T extends (...args: any) => any>(
     func: T,
@@ -20,7 +22,7 @@ interface SearchInputProps extends React.InputHTMLAttributes<HTMLInputElement> {
 export const SearchInput = (props: SearchInputProps) => {
     const { className, ...rest } = props;
 
-    const [search, setSearch] = useQueryState("q", { shallow: false });
+    const [q, setSearch] = useQueryState("q", { shallow: false });
     const inputRef = useRef<HTMLInputElement>(null);
 
     const handleSearch = useCallback(
@@ -52,7 +54,7 @@ export const SearchInput = (props: SearchInputProps) => {
                 ref={inputRef}
                 defaultValue={q || ""}
                 className={cn(className, "pl-8")}
-                onChange={onchange}
+                onChange={onChange}
                 type='text'
                 {...rest}
             />

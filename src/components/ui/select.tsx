@@ -1,18 +1,20 @@
+import { cn } from "@/lib/utils";
 import { ChangeEvent, SelectHTMLAttributes } from "react";
 
 interface SelectProps extends SelectHTMLAttributes<HTMLSelectElement> {
     label: string;
+    value: string;
     options: { label: string; value: string }[];
     onChange: (e: ChangeEvent<HTMLSelectElement>) => void;
     className?: string;
-    subheading?: string;
+    selectClassName?: string;
     noDefault?: boolean;
 }
 
 export const Select = (props: SelectProps) => {
 
     const {
-        label, options, onChange, className, subheading, noDefault,
+        label,value, options, onChange, className, selectClassName, noDefault,
         ...rest } = props;
 
     return (
