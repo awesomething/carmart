@@ -60,8 +60,8 @@ function formatColour(colour: Colour) {
       return "Green";
     case Colour.RED:
       return "Red";
-    case Colour.SILVER:
-      return "Silver";
+    // case Colour.SILVER:
+    //   return "Silver";
     case Colour.WHITE:
       return "White";
     case Colour.YELLOW:

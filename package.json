@@ -17,8 +17,10 @@
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
     "csv": "^6.3.11",
+    "debounce": "^2.2.0",
     "framer-motion": "^12.5.0",
     "html-react-parser": "^5.2.2",
+    "input": "^1.0.1",
     "lucide-react": "^0.479.0",
     "next": "15.2.1",
     "next-themes": "^0.4.6",
@@ -27,22 +29,16 @@
     "prisma": "^6.5.0",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
-<<<<<<< HEAD
     "sanitize-html": "^2.14.0",
-=======
-    "shadcn": "^2.4.0-canary.14",
->>>>>>> 452f4be862625baa0f1d244855a3349e6942a815
+    "select": "^1.1.2",
+    "shadcn": "^2.4.0-canary.15",
     "slug": "^10.0.0",
     "slugify": "^1.6.6",
     "sonner": "^2.0.1",
     "tailwind-merge": "^3.0.2",
     "tailwindcss-animate": "^1.0.7",
-<<<<<<< HEAD
-    "tinymce": "^7.7.1",
-=======
     "toast": "^0.5.4",
     "toaster": "^0.1.2",
->>>>>>> 452f4be862625baa0f1d244855a3349e6942a815
     "unlazy": "^0.12.3"
   },
   "devDependencies": {
