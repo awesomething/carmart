@@ -1,3 +1,4 @@
+"use client"
 import { routes } from "@/config/routes";
 import type { Prisma, PrismaClient } from "@prisma/client";
 import { OdoUnit, Transmission, FuelType, Colour } from "@prisma/client";
@@ -6,16 +7,21 @@ import Link from "next/link";
 import { HTMLParser } from "../shared/html-parser";
 import { Cog, Fuel, GaugeCircle, Paintbrush2 } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { MultiStepFormEnum } from "@/config/types";
+import { Favourites, MultiStepFormEnum } from "@/config/types";
+import { FavouriteButton } from "./favourite-button";
+import { useEffect, useState } from "react";
+import { usePathname } from "next/navigation";
+import {AnimatePresence, motion} from "framer-motion"
 
 type ClassifiedWithImages = Prisma.ClassifiedGetPayload<{
-    include: {
-        images: true;
-    };
+  include: {
+    images: true;
+  };
 }>;
 
 interface ClassifiedCardProps {
-    classified: ClassifiedWithImages;
+  classified: ClassifiedWithImages;
+  favourites: number[];
 }
 
 function formatNumber(num: number | null, options?: Intl.NumberFormatOptions) {
@@ -108,10 +114,26 @@ const getKeyClassifiedInfo = (classified: ClassifiedWithImages) => {
 };
 
 export const ClassifiedCard = (props: ClassifiedCardProps) => {
-  const { classified } = props;
+  const pathname = usePathname();
+  const { classified, favourites } = props;
+
+  // const [isFavourite, setIsFavourite] = useState(
+  //   favourites.includes(classified.id)
+  // );
+  const [isVisible, setIsVisible] = useState(true);
+
+  // useEffect(() => {
+  //   if (!isFavourite && pahname === routes.favourites) setIsVisible(false)
+  // }, [isFavourite, pathname]);
 
   return (
-    <div className="bg-white relative rounded-md shadow-md overflow-hidden flex flex-col">
+    <AnimatePresence>
+      {isVisible && (
+    <motion.div 
+    initial= {{opacity: 1}}
+  exit={{opacity: 0}}
+  transition={{duration: 0.2}}
+    className="bg-white relative rounded-md shadow-md overflow-hidden flex flex-col">
       <div className="aspect-3/2 relative">
         <Link href={routes.singleClassified(classified.slug)}>
           <Image
@@ -124,6 +146,10 @@ export const ClassifiedCard = (props: ClassifiedCardProps) => {
             quality={25}
           />
         </Link>
+
+        <FavouriteButton  
+      
+        id={classified.id} />
         <div className="absolute top-2.5 right-3.5 bg-primary text-slate-50 font-bold px-2 py-1 rounded">
           <p className="text-xs lg:text-base xl:text-lg font-semibold">
             {classified.price}
@@ -160,19 +186,32 @@ export const ClassifiedCard = (props: ClassifiedCardProps) => {
           </ul>
         </div>
         <div className="mt-4 flex flex-col lg:flex-row space-y-2 lg:space-y-0 lg:gap-x-2 w-full">
-              <Button className="flex-1 transition-colors hover:border-black hover:bg-primary hover:text-black py-2 lg:py-2.5 h-full text-xs md:text-sm xl:text-base" asChild variant="outline" size="sm">
-                <Link href={routes.reserve(classified.slug, MultiStepFormEnum.WELCOME)}>
-                Reserve
-                </Link>
-              </Button>
+          <Button
+            className="flex-1 transition-colors hover:border-primary hover:bg-primary hover:text-white py-2 lg:py-2.5 h-full text-xs md:text-sm xl:text-base"
+            asChild
+            variant="outline"
+            size="sm"
+          >
+            <Link
+              href={routes.reserve(classified.slug, MultiStepFormEnum.WELCOME)}
+            >
+              Reserve
+            </Link>
+          </Button>
 
-              <Button className="flex-1 py-2 lg:py-2.5 h-full text-xs md:text-sm xl:text-base" asChild size="sm">
-                <Link href={routes.singleClassified(classified.slug)}>
-                View Details
-                </Link>
-              </Button>
+          <Button
+            className="flex-1 py-2 lg:py-2.5 h-full text-xs md:text-sm xl:text-base"
+            asChild
+            size="sm"
+          >
+            <Link href={routes.singleClassified(classified.slug)}>
+              View Details
+            </Link>
+          </Button>
         </div>
       </div>
-    </div>
+    </motion.div>
+    )}
+    </AnimatePresence>
   );
 };

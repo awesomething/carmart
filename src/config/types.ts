@@ -1,5 +1,6 @@
 import { Prisma } from "@prisma/client";
 
+
 type Params = {
     [x: string]: string | string[];
   };
@@ -26,3 +27,6 @@ type Params = {
     SUBMIT_DETAILS =3,
   }
   
+  export interface Favourites {
+    ids: number[];
+  }
