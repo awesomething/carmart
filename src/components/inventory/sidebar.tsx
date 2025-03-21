@@ -68,6 +68,16 @@ export const Sidebar = ({ minMaxValues, searchParams }: SidebarProps) => {
       [name]: value || null,
     });
 
+
+const handleChange = async (
+    e: ChangeEvent<HTMLInputElement | HTMLSelectElement>
+  ) => {
+    const { name, value } = e.target;
+  
+    setQueryStates({
+      [name]: value || null
+    });
+  
     if (name === "make") {
       setQueryStates({
         model: null,
@@ -119,3 +129,9 @@ focus:ring-2 focus:ring-blue-500"
     </div>
   );
 };
+  
+    router.refresh();
+  };
+  
+
+
