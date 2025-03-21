@@ -125,7 +125,7 @@ export const CustomPagination = (props: PaginationProps) => {
 
                     ...(rel ? {rel}: {})
                 }>
-
+                {pageNumber}
                 </PaginationLink>
             </PaginationItem>;
         }) }
