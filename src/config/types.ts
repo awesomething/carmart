@@ -1,4 +1,5 @@
 import { Prisma } from "@prisma/client";
+import { ChangeEvent } from "react";
 
 
 type Params = {
@@ -9,6 +10,16 @@ type Params = {
     params: Promise<Params>;
     searchParams: Promise<{ [x: string]: string | string[] | undefined }>;
   };
+
+  export type FilterOptions<LType, VType> = Array<{
+    label: LType;
+    value: VType;
+  }>;
+
+  export interface TaxonomyFiltersProps extends AwaitedPageProps {
+    handleChange: (e: ChangeEvent<HTMLSelectElement>) => void;
+  }
+  
   
   export type AwaitedPageProps = {
     params: Awaited<PageProps["params"]>;

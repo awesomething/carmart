@@ -4,10 +4,13 @@ import { routes } from "@/config/routes";
 import { AwaitedPageProps } from "@/config/types";
 import { env } from "@/env";
 import { cn } from "@/lib/utils";
+import { SearchInput } from "../shared/search-input";
 
 import { useRouter } from "next/navigation";
+import router from "next/router";
 import { parseAsString, useQueryStates } from "nuqs";
-import { useEffect, useState } from "react";
+import { ChangeEvent, useEffect, useState } from "react";
+import { TaxonomyFilters } from "./taxonomy-filters";
 
 interface SidebarProps extends AwaitedPageProps {
   minMaxValues: any;
@@ -51,30 +54,68 @@ export const Sidebar = ({ minMaxValues, searchParams }: SidebarProps) => {
     setFilterCount(filterCount);
   }, [searchParams]);
 
-  const clearFilters = () =>{
-    const url = new URL (routes.inventory, env.NEXT_PUBLIC_APP_URL);
+  const clearFilters = () => {
+    const url = new URL(routes.inventory, env.NEXT_PUBLIC_APP_URL);
     window.location.replace(url.toString());
-    setFilterCount(0)
-  }
+    setFilterCount(0);
+  };
+  const handleChange = async (
+    e: ChangeEvent<HTMLInputElement | HTMLSelectElement>
+  ) => {
+    const { name, value } = e.target;
+
+    setQueryStates({
+      [name]: value || null,
+    });
+
+    if (name === "make") {
+      setQueryStates({
+        model: null,
+        modelVariant: null,
+      });
+    }
+
+    router.refresh();
+  };
 
   return (
     <div className="py-4 w-[21.25rem] bg-black  border-r border-muted block">
-        
-        {/* Sidebar content */}
+      {/* Sidebar content */}
 
-        <div>
-            <div className="text-lg font-semibold flex justify-between px-4">
-                <span>
-                    Filters
-                </span>
-                <button type="button" onClick={clearFilters}
-                aria-disabled={!filterCount} className={cn(
-                    "text-sm text-gray-500 py-1", !filterCount ? "disabled opacity-50 pointer-events-none cursor-default" : "hover:underline cursor-pointer"
-                )}>Clear all {filterCount ? `(${filterCount})` : null}</button>
-            </div>
+      <div>
+        <div className="text-lg font-semibold flex justify-between px-4">
+          <span>Filters</span>
+          <button
+            type="button"
+            onClick={clearFilters}
+            aria-disabled={!filterCount}
+            className={cn(
+              "text-sm text-gray-500 py-1",
+              !filterCount
+                ? "disabled opacity-50 pointer-events-none cursor-default"
+                : "hover:underline cursor-pointer"
+            )}
+          >
+            Clear all {filterCount ? `(${filterCount})` : null}
+          </button>
         </div>
-     
+      </div>
+
       {/* <div className="flex flex-col gap-4"></div> */}
+      <div className="p-4">
+        <SearchInput
+          placeholder="Search classifieds..."
+          className="w-full px-3 py-2 border rounded-md focus:outline-hidden 
+focus:ring-2 focus:ring-blue-500"
+        />
+      </div>
+      <div className="p-4 space-y-2">
+        <TaxonomyFilters
+          searchParams={searchParams}
+          handleChange={handleChange}
+          params={{}}
+        />
+      </div>
     </div>
-  )
+  );
 };
