@@ -14,7 +14,7 @@ interface SelectProps extends SelectHTMLAttributes<HTMLSelectElement> {
 export const Select = (props: SelectProps) => {
 
     const {
-        label,value, options, onChange, className, selectClassName, noDefault,
+        label,value, options, onChange, className, selectClassName, noDefault = true,
         ...rest } = props;
 
     return (
@@ -26,6 +26,7 @@ export const Select = (props: SelectProps) => {
                     value={value ?? ""}
                     className={cn(selectClassName,"disabled:bg-gray-100 w-full px-3 py-2 border-input border rounded-md focus:outline-hidden custom-select appearance-none pr-12 bg-no-repeat"
                     )}
+                    {...rest}
 
                 >
                     {!noDefault && <option value="">Select</option>}

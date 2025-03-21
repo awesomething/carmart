@@ -60,3 +60,4 @@ export const GET = async (req: NextRequest) => {
     return NextResponse.json("Internal Serer Error", {status: 500});
   }
 };
+  
