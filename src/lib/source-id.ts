@@ -1,29 +1,24 @@
+import { cookies } from "next/headers";
+import "server-only";
+import { v4 as uuid } from "uuid";
+
 const SOURCE_ID_KEY = "sourceId";
 
-// Function to set the sourceId in localStorage if it doesn't exist
-export const setSourceId = (): string => {
-  if (typeof window !== "undefined") {
-    let sourceId = localStorage.getItem(SOURCE_ID_KEY);
+export const setSourceId = async () => {
+	const cookieStore = await cookies();
 
-    if (!sourceId) {
-      sourceId = crypto.randomUUID(); // Generate a unique ID
-      localStorage.setItem(SOURCE_ID_KEY, sourceId);
-      console.log("Set sourceId in localStorage:", sourceId);
-    } else {
-      console.log("Retrieved sourceId from localStorage:", sourceId);
-    }
+	let sourceId = cookieStore.get(SOURCE_ID_KEY)?.value;
+	if (!sourceId) {
+		sourceId = uuid();
+		cookieStore.set(SOURCE_ID_KEY, sourceId, {
+			path: "/",
+		});
+	}
 
-    return sourceId;
-  }
-  return "";
+	return sourceId;
 };
 
-// Function to retrieve the sourceId from localStorage
-export const getSourceId = (): string | null => {
-  if (typeof window !== "undefined") {
-    const sourceId = localStorage.getItem(SOURCE_ID_KEY);
-    console.log("Retrieved sourceId from localStorage:", sourceId);
-    return sourceId;
-  }
-  return null;
+export const getSourceId = async () => {
+	const cookieStore = await cookies();
+	return cookieStore.get(SOURCE_ID_KEY)?.value;
 };

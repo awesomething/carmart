@@ -2,11 +2,8 @@
 import type { Metadata } from "next"; 
 import { Mulish, Roboto } from "next/font/google";
 import "./globals.css";
-<<<<<<< HEAD
 import { cn } from "@/lib/utils";
 import { Toaster } from "sonner";
-=======
->>>>>>> df4a4200c887dcde12afd8c1c4ccd71d878c6ae7
 import NextTopLoader from "nextjs-toploader";
 import { NuqsAdapter } from "nuqs/adapters/next/app";
 

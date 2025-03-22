@@ -5,6 +5,7 @@ import { ChangeEvent, useCallback, useRef } from 'react';
 import debounce from "debounce";
 import { SearchIcon, XIcon } from 'lucide-react';
 import { cn } from '@/lib/utils';
+import { Input } from '../ui/input';
 
 function debounceFunc<T extends (...args: any) => any>(
     func: T,
@@ -50,7 +51,7 @@ export const SearchInput = (props: SearchInputProps) => {
     return (
         <form className="relative flex-1">
             <SearchIcon className="absolute left-2.5 top-2.5 h-4 w-4 text-gray-500" />
-            <input
+            <Input
                 ref={inputRef}
                 defaultValue={q || ""}
                 className={cn(className, "pl-8")}

@@ -45,7 +45,7 @@ export const FavouriteButton = ({ id }: FavouriteButtonProps) => {
   const handleFavourite = () => {
     toggleFavourite(id);
     setIsFav((prev) => !prev);
-    setTimeout(() => router.refresh(), 250); // Refresh to update UI
+    setTimeout(() => router.refresh(), 1000); // Refresh to update UI
     console.log("Favourites after toggle:", toggleFavourite(id));
   };
 

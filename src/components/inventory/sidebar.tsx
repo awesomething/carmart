@@ -59,6 +59,7 @@ export const Sidebar = ({ minMaxValues, searchParams }: SidebarProps) => {
     window.location.replace(url.toString());
     setFilterCount(0);
   };
+
   const handleChange = async (
     e: ChangeEvent<HTMLInputElement | HTMLSelectElement>
   ) => {
@@ -68,16 +69,6 @@ export const Sidebar = ({ minMaxValues, searchParams }: SidebarProps) => {
       [name]: value || null,
     });
 
-
-const handleChange = async (
-    e: ChangeEvent<HTMLInputElement | HTMLSelectElement>
-  ) => {
-    const { name, value } = e.target;
-  
-    setQueryStates({
-      [name]: value || null
-    });
-  
     if (name === "make") {
       setQueryStates({
         model: null,
@@ -109,29 +100,21 @@ const handleChange = async (
             Clear all {filterCount ? `(${filterCount})` : null}
           </button>
         </div>
-      </div>
-
-      {/* <div className="flex flex-col gap-4"></div> */}
-      <div className="p-4">
-        <SearchInput
-          placeholder="Search classifieds..."
-          className="w-full px-3 py-2 border rounded-md focus:outline-hidden 
+        <div className="p-4">
+          <SearchInput
+            placeholder="Search classifieds..."
+            className="w-full px-3 py-2 border rounded-md focus:outline-hidden 
 focus:ring-2 focus:ring-blue-500"
-        />
-      </div>
-      <div className="p-4 space-y-2">
-        <TaxonomyFilters
-          searchParams={searchParams}
-          handleChange={handleChange}
-          params={{}}
-        />
+          />
+        </div>
+        <div className="p-4 space-y-2">
+          <TaxonomyFilters
+            searchParams={searchParams}
+            handleChange={handleChange}
+            params={{}}
+          />
+        </div>
       </div>
     </div>
   );
 };
-  
-    router.refresh();
-  };
-  
-
-
