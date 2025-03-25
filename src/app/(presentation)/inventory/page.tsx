@@ -41,7 +41,7 @@ const ClassifiedFilterSchema = z.object({
 const buildClassifiedFilterQuery = (
   searchParams: AwaitedPageProps["searchParams"] | undefined,
 ): Prisma.ClassifiedWhereInput => {
-  const data = ClassifiedFilterSchema.safeParse(searchParams);
+  const {data} = ClassifiedFilterSchema.safeParse(searchParams);
 
   if (!data) return { status: ClassifiedStatus.LIVE };
 
