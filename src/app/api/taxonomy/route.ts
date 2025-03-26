@@ -58,6 +58,6 @@ export const GET = async (req: NextRequest) => {
     if (error instanceof Error) {
       return NextResponse.json(error.message, { status: 400 });
     }
-    return NextResponse.json("Internal Serer Error", { status: 500 });
+    return NextResponse.json("Internal Server Error", { status: 500 });
   }
 };

@@ -1,3 +1,4 @@
+"use client"
 import { Prisma } from "@prisma/client";
 import { ChangeEvent } from "react";
 
@@ -7,9 +8,24 @@ type Params = {
   };
   
   export type PageProps = {
-    params: Promise<Params>;
+    params?: Promise<Params>;
     searchParams: Promise<{ [x: string]: string | string[] | undefined }>;
   };
+
+  export interface SidebarProps extends AwaitedPageProps {
+    minMaxValues: Prisma.GetClassifiedAggregateType<{
+      _min: {
+        year: true;
+        odoReading: true;
+        price: true;
+      };
+      _max: {
+        year: true;
+        odoReading: true;
+        price: true;
+      };
+    }>;
+  }
 
   export type FilterOptions<LType, VType> = Array<{
     label: LType;
@@ -22,7 +38,7 @@ type Params = {
   
   
   export type AwaitedPageProps = {
-    params: Awaited<PageProps["params"]>;
+    params?: Awaited<PageProps["params"]>;
     searchParams: Awaited<PageProps["searchParams"]>;
   };
 

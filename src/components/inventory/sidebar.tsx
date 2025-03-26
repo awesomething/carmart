@@ -1,9 +1,17 @@
 "use client";
 
 import { routes } from "@/config/routes";
-import { AwaitedPageProps } from "@/config/types";
+import { AwaitedPageProps, SidebarProps } from "@/config/types";
 import { env } from "@/env";
-import { cn } from "@/lib/utils";
+import {
+  cn,
+  formatBodyType,
+  formatColour,
+  formatFuelType,
+  formatOdometerUnit,
+  formatTransmission,
+  formatUlezCompliance,
+} from "@/lib/utils";
 import { SearchInput } from "../shared/search-input";
 
 import { useRouter } from "next/navigation";
@@ -11,15 +19,26 @@ import router from "next/router";
 import { parseAsString, useQueryStates } from "nuqs";
 import { ChangeEvent, useEffect, useState } from "react";
 import { TaxonomyFilters } from "./taxonomy-filters";
+import { RangeFilter } from "./range-filters";
+import {
+  BodyType,
+  Colour,
+  CurrencyCode,
+  FuelType,
+  OdoUnit,
+  Prisma,
+  Transmission,
+  ULEZCompliance,
+} from "@prisma/client";
+import { Select } from "../ui/select";
+import { format } from "path";
 
-interface SidebarProps extends AwaitedPageProps {
-  minMaxValues: any;
-}
+
 
 export const Sidebar = ({ minMaxValues, searchParams }: SidebarProps) => {
   const router = useRouter();
   const [filterCount, setFilterCount] = useState(0);
-
+  const { _min, _max } = minMaxValues;
   const [queryStates, setQueryStates] = useQueryStates(
     {
       make: parseAsString.withDefault(""),
@@ -80,7 +99,7 @@ export const Sidebar = ({ minMaxValues, searchParams }: SidebarProps) => {
   };
 
   return (
-    <div className="py-4 w-[21.25rem] bg-black  border-r border-muted block">
+    <div className="py-4 w-[21.25rem] bg-black border-r border-muted hidden lg:block">
       {/* Sidebar content */}
 
       <div>
@@ -112,6 +131,138 @@ focus:ring-2 focus:ring-blue-500"
             searchParams={searchParams}
             handleChange={handleChange}
             params={{}}
+          />
+
+          <RangeFilter
+            label="Year"
+            minName="minYear"
+            maxName="maxYear"
+            defaultMax={_max.year || new Date().getFullYear()}
+            defaultMin={_min.year || 1925}
+            handleChange={handleChange}
+            searchParams={searchParams}
+            params={{}}
+          />
+          <RangeFilter
+            label="Price"
+            minName="minPrice"
+            maxName="maxPrice"
+            defaultMax={_max.price || 21474836}
+            defaultMin={_min.price || 0}
+            handleChange={handleChange}
+            searchParams={searchParams}
+            increment={1000000}
+            thousandsSeparator
+            params={{}}
+            currency={{
+              currencyCode: "USD",
+            }}
+          />
+          <RangeFilter
+            label="Odometer Reading"
+            minName="minReading"
+            maxName="maxReading"
+            defaultMax={_max.odoReading || 1000000}
+            defaultMin={_min.odoReading || 0}
+            handleChange={handleChange}
+            searchParams={searchParams}
+            params={{}}
+            increment={5000}
+            thousandsSeparator
+          />
+          <Select
+            label="Currency"
+            name=""
+            value={queryStates.currency || ""}
+            options={Object.values(CurrencyCode).map((value) => ({
+              label: value,
+              value,
+            }))}
+            onChange={handleChange}
+          />
+
+          <Select
+            label="Odometer Unit"
+            name="odoUnit"
+            selectClassName=""
+            value={queryStates.odoUnit || ""}
+            options={Object.values(OdoUnit).map((value) => ({
+              label: formatOdometerUnit(value),
+              value,
+            }))}
+            onChange={handleChange}
+          />
+
+          <Select
+            label="Transmission"
+            name="transmission"
+            value={queryStates.transmission || ""}
+            options={Object.values(Transmission).map((value) => ({
+              label: formatTransmission(value),
+              value,
+            }))}
+            onChange={handleChange}
+          />
+          <Select
+            label="Fuel Type"
+            name="fuelType"
+            value={queryStates.fuelType || ""}
+            options={Object.values(FuelType).map((value) => ({
+              label: formatFuelType(value),
+              value,
+            }))}
+            onChange={handleChange}
+          />
+          <Select
+            label="Body Type"
+            name="bodyType"
+            value={queryStates.bodyType || ""}
+            options={Object.values(BodyType).map((value) => ({
+              label: formatBodyType(value), //format bodyType function
+              value,
+            }))}
+            onChange={handleChange}
+          />
+          <Select
+            label="Colour"
+            name="colour"
+            value={queryStates.colour || ""}
+            options={Object.values(Colour).map((value) => ({
+              label: formatColour(value),
+              value,
+            }))}
+            onChange={handleChange}
+          />
+          <Select
+            label="ULEZ Compliance"
+            name="ulezCompliance"
+            value={queryStates.ulezCompliance || ""}
+            options={Object.values(ULEZCompliance).map((value) => ({
+              label: formatUlezCompliance(value), //format UlezCompliance
+              value,
+            }))}
+            onChange={handleChange}
+          />
+
+          <Select
+            label="Doors"
+            name="doors"
+            value={queryStates.doors || ""}
+            options={Array.from({ length: 6 }).map((_, i) => ({
+              label: Number(i + 1).toString(),
+              value: Number(i + 1).toString(),
+            }))}
+            onChange={handleChange}
+          />
+          <Select
+            label="Seats"
+            name="seats"
+            value={queryStates.seats || ""}
+            options={Array.from({ length: 8 }).map((_, i) => ({
+              label: Number(i + 1).toString(),
+              value: Number(i + 1).toString(),
+            }))}
+            onChange={handleChange}
           />
         </div>
       </div>

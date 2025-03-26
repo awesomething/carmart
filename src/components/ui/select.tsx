@@ -32,13 +32,13 @@ export const Select = (props: SelectProps) => {
           value={value ?? ""}
           className={cn(
             selectClassName,
-            "px-3 py-2 border border-primary rounded-md appearance-none pr-12 bg-black text-white hover:bg-gray-800 focus:bg-gray-900 focus:text-white focus:outline-none w-full"
+            "px-3 py-2 border border-primary rounded-md appearance-none pr-12 bg-black text-white hover:bg-gray-800 focus:bg-gray-900 cursor-pointer focus:text-white focus:outline-none w-full disabled:cursor-default disabled:hover:bg-black"
           )}
           
 
           {...rest}
         >
-          {!noDefault && <option value="">Select</option>}
+          {noDefault && <option value="">Select</option>}
           {options.map((option) => (
             <option key={option.value} value={option.value}>
               {option.label}

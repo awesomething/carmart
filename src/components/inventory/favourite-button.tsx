@@ -1,72 +1,51 @@
 "use client";
 
+import { endpoints } from "@/config/endpoints";
+import { api } from "@/lib/api-client";
 import { cn } from "@/lib/utils";
-import { Button } from "../ui/button";
 import { HeartIcon } from "lucide-react";
 import { useRouter } from "next/navigation";
-import { useState, useEffect } from "react"; 
+import { Button } from "../ui/button";
 
-const FAVOURITES_STORAGE_KEY = "favourites";
-
-const getFavourites = (): number[] => {
-  if (typeof window !== "undefined") {
-    const favourites = localStorage.getItem(FAVOURITES_STORAGE_KEY);
-    return favourites ? JSON.parse(favourites) : [];
-  }
-  return [];
+type FavouriteButtonProps = {
+	setIsFavourite: (isFavourite: boolean) => void;
+	isFavourite: boolean;
+	id: number;
 };
 
-const toggleFavourite = (id: number) => {
-  const favourites = getFavourites();
-  const updatedFavourites = favourites.includes(id)
-    ? favourites.filter((favId) => favId !== id) // Remove if already favorited
-    : [...favourites, id]; // Add if not in list
+export const FavouriteButton = (props: FavouriteButtonProps) => {
+	const { setIsFavourite, isFavourite, id } = props;
 
-  localStorage.setItem(FAVOURITES_STORAGE_KEY, JSON.stringify(updatedFavourites));
-  return updatedFavourites;
-};
+	const router = useRouter();
 
-const isFavourite = (id: number): boolean => {
-  return getFavourites().includes(id);
-};
+	const handleFavourite = async () => {
+		const { ids } = await api.post<{ ids: number[] }>(endpoints.favourites, {
+			json: { id },
+		});
 
-interface FavouriteButtonProps {
-  id: number;
-}
+		if (ids.includes(id)) setIsFavourite(true);
+		else setIsFavourite(false);
+		setTimeout(() => router.refresh(), 250);
+	};
 
-export const FavouriteButton = ({ id }: FavouriteButtonProps) => {
-  const router = useRouter();
-  const [isFav, setIsFav] = useState(false);
-
-  useEffect(() => {
-    setIsFav(isFavourite(id));
-  }, [id]);
-
-  const handleFavourite = () => {
-    toggleFavourite(id);
-    setIsFav((prev) => !prev);
-    setTimeout(() => router.refresh(), 1000); // Refresh to update UI
-    console.log("Favourites after toggle:", toggleFavourite(id));
-  };
-
-  return (
-    <Button
-      onClick={handleFavourite}
-      variant="ghost"
-      size="icon"
-      className={cn(
-        "absolute top-2.5 left-3.5 rounded-full z-10 group !h-6 !w-6 lg:h-8 lg:w-8 xl:h-10 xl:w-10",
-        isFav ? "bg-white" : "!bg-muted/15"
-      )}
-    >
-      <HeartIcon
-        className={cn(
-          "duration-200 transition-colors ease-in-out w-3.5 h-3.5 lg:w-4 lg:h-4 xl:w-6 xl:h-6 text-white",
-          isFav
-            ? "text-pink-500 fill-pink-500"
-            : "group-hover:text-pink-500 group-hover:fill-pink-500"
-        )}
-      />
-    </Button>
-  );
+	return (
+		<Button
+			onClick={handleFavourite}
+			variant="ghost"
+			size="icon"
+			className={cn(
+				"absolute top-2.5 left-3.5 rounded-full z-10 group !h-4 !w-4 lg:!h-6 lg:!w-6 xl:!h-8 xl:!w-8",
+				isFavourite ? "bg-white" : "!bg-muted/15",
+			)}
+		>
+			<HeartIcon
+				className={cn(
+					"duration-200 transition-colors ease-in-out w-3.5 h-3.5 lg:w-4 lg:h-4 xl:w-6 xl:h-6 text-white",
+					isFavourite
+						? "text-pink-500 fill-pink-500"
+						: "group-hover:text-pink-500 group-hover:fill-pink-500",
+				)}
+			/>
+		</Button>
+	);
 };
