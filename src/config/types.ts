@@ -57,3 +57,10 @@ type Params = {
   export interface Favourites {
     ids: number[];
   }
+
+  export interface MultiStepFormComponentProps extends AwaitedPageProps {
+      classified: Prisma.ClassifiedGetPayload<{
+          include:{make: true}
+      }>
+  }
+  

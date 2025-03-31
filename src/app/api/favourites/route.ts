@@ -1,4 +1,5 @@
 
+import { validateIdSchema } from "@/app/schemas/id.schema";
 import { routes } from "@/config/routes";
 import type { Favourites } from "@/config/types";
 import { redis } from "@/lib/redis-store";
@@ -9,7 +10,7 @@ import {z} from "zod"
 
 export const POST = async (req: NextRequest) => {
 	const body = await req.json();
-    const validateIdSchema = z.object({ id: z.number().int() });
+    
 
 	const { data, error } = validateIdSchema.safeParse(body);
 
