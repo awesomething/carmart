@@ -1,7 +1,7 @@
 import { routes } from "./routes";
 
 export const imageSources = {
-    classifiedPlaceholder: "https://car-dealer-website.s3.eu-west-1.amazonaws.com/next-s3-uploads/stock/classified-placeholder.jpeg"
+    classifiedPlaceholder: "https://majestic-motors.s3.eu-west-2.amazonaws.com/uploads/classified-placeholder.jpeg"
 }
 
 export const CLASSIFIEDS_PER_PAGE = 3;
