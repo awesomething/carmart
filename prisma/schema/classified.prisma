@@ -87,13 +87,7 @@ enum Colour {
     ORANGE
     PURPLE
     BROWN
-    GREY
-    PINK
-    LIME
-    CYAN
-    MAGENTA
-    TEAL
-}
+   }
 
 enum FuelType {
     PETROL
@@ -111,13 +105,8 @@ enum BodyType {
     COUPE
     SUV
     WAGON
-    convertible
-    MINIVAN
-    COASTER
-    OFF_ROAD
-    TRUCK
-    VAN
-}
+    CONVERTIBLE
+   }
 
 enum OdoUnit {
     KILOMETERS

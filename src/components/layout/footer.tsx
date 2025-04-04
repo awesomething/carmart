@@ -9,27 +9,27 @@ const socialLinks = [
 		id: 1,
 		href: "https://facebook.com",
 		icon: (
-			<SiMeta className="w-5 h-5 text-gray-600 hover:text-primary transition-colors" />
+			<SiMeta className="w-5 h-5 text-white hover:text-primary transition-colors" />
 		),
 	},
 	{
 		id: 2,
 		href: "https://twitter.com",
 		icon: (
-			<SiX className="w-5 h-5 text-gray-600 hover:text-primary transition-colors" />
+			<SiX className="w-5 h-5 text-white hover:text-primary transition-colors" />
 		),
 	},
 	{
 		id: 3,
 		href: "https://instagram.com",
 		icon: (
-			<SiInstagram className="w-5 h-5 text-gray-600 hover:text-primary transition-colors" />
+			<SiInstagram className="w-5 h-5 text-white hover:text-primary transition-colors" />
 		),
 	},
 ];
 export const PublicFooter = () => {
 	return (
-		<footer className="bg-gray-100 px-8 lg:px-0 py-8">
+		<footer className="bg-black border-t border-muted px-8 lg:px-0 py-8">
 			<div className="container mx-auto grid grid-cols-1 md:grid-cols-3 gap-8">
 				<div className="flex flex-col space-x-2 gap-y-2">
 					<Link className="flex items-center" href={routes.home}>
@@ -57,7 +57,7 @@ export const PublicFooter = () => {
 						<li key={link.id}>
 							<Link
 								href={link.href}
-								className=" hover:text-primary text-black"
+								className=" hover:text-primary text-white"
 							>
 								{link.label}
 							</Link>
@@ -66,7 +66,7 @@ export const PublicFooter = () => {
 					<li>
 						<Link
 							href={routes.signIn}
-							className="text-black hover:text-primary"
+							className="text-white hover:text-primary"
 						>
 							Admin
 						</Link>
@@ -75,7 +75,7 @@ export const PublicFooter = () => {
 
 				<NewsletterForm />
 			</div>
-			<div className="container mx-auto mt-8 text-center text-gray-700">
+			<div className="container mx-auto mt-8 text-center">
 				<h4 className="text-lg font-bold text-primary">Company Info</h4>
 				<p>Company No. 123456789 | VAT No. NG123456789</p>
 				<p>

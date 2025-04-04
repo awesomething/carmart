@@ -1,7 +1,11 @@
 import { routes } from "./routes";
 
 export const imageSources = {
-    classifiedPlaceholder: "https://car-dealer-website.s3.eu-west-1.amazonaws.com/next-s3-uploads/stock/classified-placeholder.jpeg"
+    classifiedPlaceholder: "https://eazydev-autoshop.s3.eu-north-1.amazonaws.com/uploads/AdobeStock_855683950.jpeg",
+    
+    carLineup: "https://eazydev-autoshop.s3.eu-north-1.amazonaws.com/uploads/AdobeStock_197763326.jpeg",
+
+    featureSection: "https://eazydev-autoshop.s3.eu-north-1.amazonaws.com/uploads/AdobeStock_753683117.jpeg"
 }
 
 export const CLASSIFIEDS_PER_PAGE = 3;

@@ -9,5 +9,7 @@ export const routes = {
     favourites: "/favourites",
     inventory: "/inventory",
     signIn: "/sign-in",
+    notAvailable: (slug: string) => `/inventory/${slug}/not-available`,
+
   };
   

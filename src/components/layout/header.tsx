@@ -16,7 +16,7 @@ export const PublicHeader = async () => {
     const sourceId = await getSourceId();
     const favourites = await redis.get<Favourites>(sourceId ?? "");
     return (
-        <header className="flex items-center justify-between h-16 px-4 bg-transparent gap-x-6">
+        <header className="flex items-center border-b border-muted justify-between h-16 px-4 bg-transparent gap-x-6">
             <div className="flex items-center flex-1">
                 <Link href={routes.home} className="flex items-center gap-2">
                     <Image
@@ -41,11 +41,11 @@ export const PublicHeader = async () => {
                 asChild
                 variant="ghost"
                 size="icon"
-                className="relative inline-block group"
+                className="relative inline-block group hover:bg-black"
             >
                 <Link href={routes.favourites}>
-                    <div className="flex group-hover:bg-pink-500 diratopm-200 transition-colors ease-in-out items-center justify-center w-10 h-10 bg-muted rounded-full">
-                        <HeartIcon className="w-6 h-6 text-primary group-hover:text-white group-hover:fill-white" />
+                    <div className="flex hover:bg-gray-700 transition-colors ease-in-out items-center justify-center w-10 h-10 bg-muted rounded-full border-2 border-transparent hover:border-gray-700">
+                        <HeartIcon className="w-6 h-6 text-primary group-hover:text-primary group-hover:fill-primary group-hover:border-0 group-hover:border-primary" />
                     </div>
                     <div className="absolute -top-1 5 -right-1.5 flex items-center justify-center w-5 h-5 text-white bg-pink-500 rounded-full group-hover:bg-primary">
                         <span className="text-xs">
@@ -66,7 +66,7 @@ export const PublicHeader = async () => {
                     <nav className="grid gap-3">
                         {navLinks.map((link) => (
                             <Link
-                                className="flex items-center gap-2 py-2 text-sm font-medium text-gray-600 hover:text-gray-900"
+                                className="flex items-center gap-2 py-2 text-sm font-medium text-white hover:text-primary border-b border-b-gray-700"
                                 href={link.href}
                                 key={link.id}
                             >
