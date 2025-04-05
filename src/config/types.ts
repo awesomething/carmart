@@ -50,8 +50,8 @@ type Params = {
 
   export enum MultiStepFormEnum {
     WELCOME = 1,
-    SELECT_DATE =2,
-    SUBMIT_DETAILS =3,
+    SELECT_DATE = 2,
+    SUBMIT_DETAILS = 3,
   }
   
   export interface Favourites {

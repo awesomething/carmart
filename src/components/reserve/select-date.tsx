@@ -2,10 +2,9 @@
 
 import { MultiStepFormComponentProps, MultiStepFormEnum } from "@/config/types";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { useRouter } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 import { useTransition } from "react";
 import { SubmitHandler, useForm } from "react-hook-form";
-import { z } from "zod";
 import {
   FormField,
   Form,
@@ -14,7 +13,7 @@ import {
   FormMessage,
   FormLabel,
 } from "../ui/form";
-import { Input } from "../ui/input";
+
 import { Select } from "../ui/select";
 import { Button } from "../ui/button";
 import { Loader2 } from "lucide-react";
@@ -22,7 +21,6 @@ import { routes } from "@/config/routes";
 import { generateDateOptions, generateTimeOptions } from "@/lib/utils";
 import { env } from "@/env";
 import { SelectDateSchema, SelectDateType } from "@/app/schemas/form.schema";
-
 
 export const SelectDate = (props: MultiStepFormComponentProps) => {
   const { searchParams } = props;
@@ -59,6 +57,7 @@ export const SelectDate = (props: MultiStepFormComponentProps) => {
       if (!valid) return;
       await new Promise((resolve) => setTimeout(resolve, 500));
     });
+    const pathname = usePathname();
 
     const url = new URL(
       routes.reserve(props.classified.slug, MultiStepFormEnum.SUBMIT_DETAILS),
@@ -67,7 +66,7 @@ export const SelectDate = (props: MultiStepFormComponentProps) => {
     url.searchParams.set("handoverDate", encodeURIComponent(data.handoverDate));
     url.searchParams.set("handoverTime", encodeURIComponent(data.handoverTime));
 
-    router.push(url.toString());
+    router.push(`${pathname}?${url.toString()}`);
   };
   return (
     <Form {...form}>
@@ -95,7 +94,7 @@ export const SelectDate = (props: MultiStepFormComponentProps) => {
           />
           <FormField
             control={form.control}
-            name="handoverDate"
+            name="handoverTime"
             render={({ field: { ref, ...rest } }) => (
               <FormItem>
                 <FormLabel htmlFor="handoverTime">Select a Time</FormLabel>

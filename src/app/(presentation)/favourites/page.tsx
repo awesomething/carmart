@@ -35,9 +35,9 @@ export default async function FavouritesPage(props: PageProps) {
 	const totalPages = Math.ceil(count / CLASSIFIEDS_PER_PAGE);
 
 	return (
-		<div className="container mx-auto px-4 py-8 min-h-[80dvh]">
+		<div className="w-full mx-auto px-4 md:px-6 lg:px-8 xl:px-10 py-8 min-h-[80dvh] bg-black ">
 			<h1 className="text-3xl font-bold mb-6">Your Favourite Classifieds</h1>
-			<div className="grid grid-cols-2 md:grid-cols-3 xl:grid-cols-4 gap-4">
+			<div className="grid grid-cols-2 md:grid-cols-3 xl:grid-cols-4 gap-4 justify-center items-center">
 				{classifieds.map((classified) => {
 					return (
 						<ClassifiedCard
@@ -53,11 +53,11 @@ export default async function FavouritesPage(props: PageProps) {
 					baseURL={routes.favourites}
 					totalPages={totalPages}
 					styles={{
-						paginationRoot: "justify-center",
+						paginationRoot: "justify-center ",
 						paginationPrevious: "",
 						paginationNext: "",
 						paginationLinkActive: "",
-						paginationLink: "border-none active:border",
+						paginationLink: "",
 					}}
 				/>
 			</div>

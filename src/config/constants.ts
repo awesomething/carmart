@@ -3,7 +3,7 @@ import { routes } from "./routes";
 export const imageSources = {
     classifiedPlaceholder: "https://eazydev-autoshop.s3.eu-north-1.amazonaws.com/uploads/AdobeStock_855683950.jpeg",
     
-    carLineup: "https://eazydev-autoshop.s3.eu-north-1.amazonaws.com/uploads/AdobeStock_197763326.jpeg",
+    carLineup: "https://eazydev-autoshop.s3.eu-north-1.amazonaws.com/uploads/feature-collection.png",
 
     featureSection: "https://eazydev-autoshop.s3.eu-north-1.amazonaws.com/uploads/AdobeStock_753683117.jpeg"
 }

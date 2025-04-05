@@ -2,9 +2,9 @@ import { MultiStepFormEnum } from "@/config/types";
 import { z } from "zod";
 
 export const MultiStepFormSchema = z.object({
-    step: z.nativeEnum(MultiStepFormEnum),
-    slug: z.string()
-})
+  slug: z.string(),
+  step: z.nativeEnum(MultiStepFormEnum),
+});
 
 export const SelectDateSchema = z.object({
   handoverDate: z.string({ message: "Handover Date is Required" }),

@@ -1,4 +1,7 @@
+import FeatureSection from "@/components/homepage/feature-section";
 import HeroSection from "@/components/homepage/hero-section";
+import LatestArrivals from "@/components/homepage/latest-arrivals";
+import { OurBrandsSection } from "@/components/homepage/our-brands-section";
 import { PageProps } from "@/config/types";
 
 export default async function Home(props: PageProps) {
@@ -6,7 +9,9 @@ export default async function Home(props: PageProps) {
   return (
     <div className="w-full min-h-screen bg-background">
       <HeroSection searchParams={searchParams}/>
-   
+      <FeatureSection/>
+      <LatestArrivals/>
+      <OurBrandsSection/>
     </div>
   );
 }

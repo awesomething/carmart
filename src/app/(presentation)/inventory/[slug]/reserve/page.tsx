@@ -1,3 +1,4 @@
+
 import { MultiStepFormSchema } from "@/app/schemas/form.schema";
 import { SelectDate } from "@/components/reserve/select-date";
 import { SubmitDetails } from "@/components/reserve/submit-details";
@@ -15,15 +16,16 @@ const MAP_STEP_TO_COMPONENT = {
 }
 
 
-export default async function ReservePaage (props: PageProps){
+export default async function ReservePage (props: PageProps){
     const searchParams = await props.searchParams;
     const params = await props.params;
     const slug = params?.slug;
     const step = searchParams?.step;
+    
 
     const {data, success, error} = MultiStepFormSchema.safeParse({
         slug,
-        step: Number(step),
+        step: Number(step) as MultiStepFormEnum,
     });
 
     if (!success) {

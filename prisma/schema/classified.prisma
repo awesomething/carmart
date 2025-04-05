@@ -87,6 +87,8 @@ enum Colour {
     ORANGE
     PURPLE
     BROWN
+    TEAL
+    LIME
    }
 
 enum FuelType {

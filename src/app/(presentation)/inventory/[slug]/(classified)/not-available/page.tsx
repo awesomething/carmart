@@ -3,7 +3,7 @@ import { XCircle } from "lucide-react";
 
 export default function NotAvailablePage() {
 	return (
-		<div className="flex items-center justify-center min-h-[80dvh]">
+		<div className="flex items-center justify-center min-h-[80dvh] bg-black">
 			<div className="flex flex-col items-center p-8 space-y-4">
 				<XCircle className="w-16 h-16 text-muted-foreground" />
 				<p className="text-lg font-semibold text-center">
