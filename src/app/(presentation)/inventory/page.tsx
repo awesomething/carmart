@@ -61,7 +61,7 @@ export default async function InventoryPage(props: PageProps) {
     <div className="flex">
       <Sidebar minMaxValues={minMaxResult} searchParams={searchParams} />
 
-      <div className="flex-1 p-4 bg-black">
+      <div className="flex-1 p-4 bg-gray-800">
         <div className="flex space-y-2 items-center justify-between pb-4 -mt-1">
           <div className="flex justify-between items-center w-full">
             <h2 className="text-sm md:text-base lg:text-xl font-semibold min-w-fit">

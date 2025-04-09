@@ -13,7 +13,7 @@ export const SubmitDetailsSchema = z.object({
 export  type SubmitDetailsSchemaType = z.infer<typeof SubmitDetailsSchema>
 
 export const CreateCustomerSchema = SubmitDetailsSchema.extend({
-    date: z.string(),
+    date: z.date(),
     slug: z.string(),
 });
 export type CreateCustomerType = z.infer<typeof CreateCustomerSchema>

@@ -247,7 +247,7 @@ export const generateDateOptions = () => {
   const dates = [];
   for (let i = 0; i < 30; i++) {
     const date = new Date(today);
-    date.setDate(today.getDate() + 1);
+    date.setDate(today.getDate() + i);
     dates.push({
       label: format(date, "dd MMM yyyy"),
       value: format(date, "dd MMM yyyy"),

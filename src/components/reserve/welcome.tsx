@@ -56,44 +56,44 @@ export const Welcome = (props: MultiStepFormComponentProps) => {
 								src={props.classified.make.image}
 								alt={props.classified.make.name}
 								className="aspect-1/1 object-contain"
-								height={100}
-								width={100}
+								height={150}
+								width={150}
 							/>
 						</div>
 						<div className="flex-1">
-							<h2 className="text-lg font-semibold line-clamp-1">
+							<h2 className="text-lg font-semibold line-clamp-1 text-black">
 								{props.classified.title}
 							</h2>
-							<div className="text-xs line-clamp-2">
+							<div className="text-xs line-clamp-2 text-black">
 								<HTMLParser html={props.classified.description ?? ""} />
 							</div>
 						</div>
 					</div>
 				</div>
 
-				<div className="flex justify-around items-center bg-gray-100 p-4 rounded-md mb-4">
+				<div className="flex justify-around items-center bg-gray-700 p-4 rounded-md mb-4">
 					<div className="text-center">
 						<p className="font-bold">Select Handover Date & Time</p>
-						<p className="text-gray-500">approx. 1 minute</p>
+						<p className="text-gray-300">approx. 1 minute</p>
 					</div>
 					<ArrowRightIcon className="w-6 h-6" />
 					<div className="text-center">
 						<p className="font-bold">Submit Your Details</p>
-						<p className="text-gray-500">approx. 1 minute</p>
+						<p className="text-gray-300">approx. 1 minute</p>
 					</div>
 				</div>
 				<p className="font-bold mb-4">Ready to begin?</p>
 				<div className="flex justify-around items-center">
 					<div className="flex items-center flex-col justify-center space-y-2">
-						<LockIcon className="w-6 h-6" />
+						<LockIcon className="w-6 h-6 text-gray-700" />
 						<p className="text-gray-700">SSL Secure</p>
 					</div>
 					<div className="flex items-center flex-col justify-center space-y-2">
-						<StarIcon className="w-6 h-6" />
+						<StarIcon className="w-6 h-6 text-gray-700" />
 						<p className="text-gray-700">Trustpilot</p>
 					</div>
 					<div className="flex items-center flex-col justify-center space-y-2">
-						<CreditCardIcon className="w-6 h-6" />
+						<CreditCardIcon className="w-6 h-6 text-gray-700" />
 						<p className="text-gray-700">Stripe</p>
 					</div>
 				</div>

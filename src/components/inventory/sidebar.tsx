@@ -99,7 +99,7 @@ export const Sidebar = ({ minMaxValues, searchParams }: SidebarProps) => {
   };
 
   return (
-    <div className="py-4 w-[21.25rem] bg-black border-r border-muted hidden lg:block">
+    <div className="py-4 w-[21.25rem] bg-gray-800 border-r border-muted hidden lg:block">
       {/* Sidebar content */}
 
       <div>
@@ -110,7 +110,7 @@ export const Sidebar = ({ minMaxValues, searchParams }: SidebarProps) => {
             onClick={clearFilters}
             aria-disabled={!filterCount}
             className={cn(
-              "text-sm text-gray-500 py-1",
+              "text-sm text-gray-400 py-1",
               !filterCount
                 ? "disabled opacity-50 pointer-events-none cursor-default"
                 : "hover:underline cursor-pointer"
