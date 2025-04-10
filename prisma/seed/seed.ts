@@ -7,8 +7,8 @@ const prisma = new PrismaClient();
 
 async function main() {
 	// await prisma.$executeRaw`TRUNCATE TABLE "makes", RESTART IDENTITY CASCADE`;
-	await prisma.$executeRaw`TRUNCATE TABLE "classified" RESTART IDENTITY CASCADE`;
-	// await seedTaxonomy(prisma);
+	// await prisma.$executeRaw`TRUNCATE TABLE "classified" RESTART IDENTITY CASCADE`;
+	await seedTaxonomy(prisma);
 	await seedClassifieds(prisma);
 	await seedImages(prisma);
 	
