@@ -8,6 +8,7 @@ import { Input } from "../ui/input";
 import { useFormStatus } from "react-dom";
 import { Button } from "../ui/button";
 import { CircleCheckIcon, CircleX, Loader2 } from "lucide-react";
+import { signInAction } from "@/app/_actions/sign-in";
 
 const SubmitButton = () => {
   const { pending } = useFormStatus();
@@ -27,7 +28,7 @@ const SubmitButton = () => {
 };
 
 export const SignInForm = () => {
-  const [state, formAction] = useActionState(null, {
+  const [state, formAction] = useActionState(signInAction, {
     success: false,
     message: "",
   });
@@ -37,7 +38,7 @@ export const SignInForm = () => {
   useEffect(() => {
     if (state.success && formRef.current) {
       router.refresh();
-      router.push(routes.challenge);
+    //   router.push(routes.challenge);
     }
   }, [state, router]);
   return (
