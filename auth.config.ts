@@ -1,15 +1,14 @@
-import type { NextAuthConfig, User } from "next-auth";
-import { PrismaAdapter } from "@auth/prisma-adapter";
-import { prisma } from "@/lib/prisma";
-import CredentialProvider from "@auth/core/providers/credentials";
-import ResendProvider from "@auth/core/providers/resend";
-import { z } from "zod";
-import { bcryptPasswordCompare } from "@/lib/bcrypt";
+import { SignInSchema } from "@/app/schemas/auth.schema";
 import { SESSION_MAX_AGE } from "@/config/constants";
 import { routes } from "@/config/routes";
-import { SignInSchema } from "@/app/schemas/auth.schema";
-
-
+import { bcryptPasswordCompare } from "@/lib/bcrypt";
+import { issueChallenge } from "@/lib/otp";
+import { prisma } from "@/lib/prisma";
+import type { AdapterUser } from "@auth/core/adapters";
+import CredentialsProvider from "@auth/core/providers/credentials";
+import ResendProvider from "@auth/core/providers/resend";
+import { PrismaAdapter } from "@auth/prisma-adapter";
+import type { NextAuthConfig, User } from "next-auth";
 
 export const config = {
   adapter: PrismaAdapter(prisma),
@@ -20,33 +19,47 @@ export const config = {
     maxAge: SESSION_MAX_AGE / 1000,
   },
   providers: [
-    CredentialProvider({
+    CredentialsProvider({
       credentials: {
-        email: { label: "Email", type: "text" },
-        password: { label: "Password", type: "password" },
+        email: {
+          label: "Email",
+          type: "email",
+        },
+        password: {
+          label: "Password",
+          type: "password",
+        },
       },
       authorize: async (credentials): Promise<User | null> => {
         try {
-          const validatedField = SignInSchema.safeParse(credentials);
+          const validatedFields = SignInSchema.safeParse(credentials);
 
-          if (!validatedField.success) return null;
+          if (!validatedFields.success) return null;
 
           const user = await prisma.user.findUnique({
-            where: { email: validatedField.data.email },
-            select: { id: true, hashedPassword: true },
+            where: { email: validatedFields.data.email },
+            select: { id: true, email: true, hashedPassword: true },
           });
+
           if (!user) return null;
-          const match =  await bcryptPasswordCompare(
-            validatedField.data.password,
+
+          const match = await bcryptPasswordCompare(
+            validatedFields.data.password,
             user.hashedPassword
           );
 
           if (!match) return null;
-          //issue a challenge
 
-          return { ...user, requires2FA: true };
-        } catch (err) {
-          console.log({ err });
+          await issueChallenge(user.id, user.email);
+
+          const dbUser = await prisma.user.findUnique({
+            where: { id: user.id },
+            omit: { hashedPassword: true },
+          });
+
+          return { ...dbUser, requires2FA: true };
+        } catch (error) {
+          console.log({ error });
           return null;
         }
       },
@@ -68,6 +81,7 @@ export const config = {
           requires2FA: user.requires2FA as boolean,
         },
       });
+
       if (!session) return null;
 
       if (user) token.requires2FA = user.requires2FA;
@@ -77,16 +91,16 @@ export const config = {
 
       return token;
     },
-    async session({ session, user}){
-        const newSession = {
-            user, 
-            requires2FA: session.requires2FA,
-            expires: session.expires,
-        };
-        return newSession;
-    }
+
+    async session({ session, user }) {
+      session.user = {
+        id: session.userId,
+        email: user.email,
+      } as AdapterUser;
+      return session;
+    },
   },
   jwt: {
-    encode: async ({token}) => token?.id as string
-  }
+    encode: async ({ token }) => token?.id as string,
+  },
 } as NextAuthConfig;

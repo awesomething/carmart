@@ -17,7 +17,7 @@ export const FormHeader = () => {
             </div>
             <div className="flex items-center justify-end gap-2 text-sm font-medium text-muted-foreground flex-1">
                 {steps.map((step)=>(
-                    <div className={cn("w-8 h-8 rounded-full flex items-center justify-center", params.get("step") === step.id ? "bg-gray-700 text-muted-foreground" : "bg-primary text-primary-foreground")} key={step.id}>
+                    <div className={cn("w-8 h-8 rounded-full flex items-center justify-center", params.get("step") === step.id ? "bg-gray-800 text-muted-foreground" : "bg-primary text-primary-foreground")} key={step.id}>
                             {step.id}
                     </div>
 

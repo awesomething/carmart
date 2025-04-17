@@ -97,7 +97,7 @@ export const SelectDate = (props: MultiStepFormComponentProps) => {
 							<FormItem>
 								<FormLabel htmlFor="handoverDate">Select a Date</FormLabel>
 								<FormControl>
-									<Select label={""} options={generateDateOptions()} selectClassName="!bg-white !text-gray-700" {...rest} />
+									<Select label={""} options={generateDateOptions()} selectClassName="!bg-white !text-gray-800" {...rest} />
 								</FormControl>
 								<FormMessage />
 							</FormItem>
@@ -110,7 +110,7 @@ export const SelectDate = (props: MultiStepFormComponentProps) => {
 							<FormItem>
 								<FormLabel htmlFor="handoverTime">Select a Time</FormLabel>
 								<FormControl>
-									<Select label={""} options={generateTimeOptions()} selectClassName="!bg-white !text-gray-700" {...rest} />
+									<Select label={""} options={generateTimeOptions()} selectClassName="!bg-white !text-gray-800" {...rest} />
 								</FormControl>
 								<FormMessage />
 							</FormItem>

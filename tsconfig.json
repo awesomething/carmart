@@ -24,7 +24,11 @@
       "@/env":[
         "./env.mjs"
       ],
-      "@/auth": ["./auth"]
+      "@/auth": ["./auth"],
+      
+      "@/emails/*": [
+        "./emails/*"
+      ]
     },
 
   },

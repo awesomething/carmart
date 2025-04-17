@@ -8,7 +8,7 @@ const password = await bcryptPasswordHash("abc123#");
 const admin = await prisma.user.create({
     data: {
         name: "Admin",
-        email: "test@gmail.com",
+        email: "taiy194@gmail.com",
         hashedPassword: password,
     }
 });

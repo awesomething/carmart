@@ -9,7 +9,9 @@ export const routes = {
   success: (slug: string) => `/inventory/${slug}/success`,
   favourites: "/favourites",
   inventory: "/inventory",
-  signIn: "auth/sign-in",
+  signIn: "/auth/sign-in",
   notAvailable: (slug: string) => `/inventory/${slug}/not-available`,
   challenge: "/auth/challenge",
+  admin:{ 
+   dashboard: "/admin/dashboard"}
 };

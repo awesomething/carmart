@@ -42,7 +42,7 @@ export const SignInForm = () => {
     }
   }, [state, router]);
   return (
-    <div className="flex flex-col items-center justify-center min-h-[calc(100vh-4rem)] bg-gray-700">
+    <div className="flex flex-col items-center justify-center min-h-[calc(100vh-4rem)] bg-gray-800">
       <div className="max-w-md w-full pb-60">
         <form
           ref={formRef}

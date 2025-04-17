@@ -17,7 +17,7 @@ const LatestArrivals = async () => {
     const sourceId = await getSourceId();
     const favourites = await redis.get<Favourites>(sourceId || "");
   return (
-   <section className='py-16 sm:py-24 bg-gray-800 border-b border-gray-700'>
+   <section className='py-16 sm:py-24 bg-gray-800 border-b border-gray-800'>
     <div className='container mx-auto max-w-[80vw]'>
         <h2 className='mt-2 uppercase text-2xl font-bold tracking-tight text-gray-100 sm:text-4xl'>Latest Arrivals</h2>
         <LatestArrivalsCarousel classifieds={classified} favourites={favourites ? favourites.ids : []}
