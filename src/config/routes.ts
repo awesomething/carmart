@@ -9,9 +9,13 @@ export const routes = {
   success: (slug: string) => `/inventory/${slug}/success`,
   favourites: "/favourites",
   inventory: "/inventory",
-  signIn: "/auth/sign-in",
+  signIn: "/sign-in",
   notAvailable: (slug: string) => `/inventory/${slug}/not-available`,
   challenge: "/auth/challenge",
-  admin:{ 
-   dashboard: "/admin/dashboard"}
+  admin: {
+    dashboard: "/admin/dashboard",
+    classifieds: "/admin/classifieds",
+    customers: "/admin/customers",
+    settings: "/admin/settings",
+  },
 };

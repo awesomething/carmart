@@ -6,6 +6,7 @@ import { cn } from "@/lib/utils";
 import { Toaster } from "sonner";
 import NextTopLoader from "nextjs-toploader";
 import { NuqsAdapter } from "nuqs/adapters/next/app";
+import { ClerkProvider } from "@clerk/nextjs";
 
 
 
@@ -34,6 +35,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
+    <ClerkProvider>
     <html lang="en">
       <body
         className={cn(
@@ -49,5 +51,6 @@ export default function RootLayout({
       </body>
 
     </html>
+    </ClerkProvider>
   );
 }

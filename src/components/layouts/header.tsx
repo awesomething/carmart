@@ -1,4 +1,5 @@
-import { auth } from "@/auth";
+import { auth } from "@clerk/nextjs/server";
+import { currentUser } from "@clerk/nextjs/server";
 import { navLinks } from "@/config/constants";
 import { routes } from "@/config/routes";
 import type { Favourites } from "@/config/types";
@@ -10,9 +11,14 @@ import Link from "next/link";
 import { SignOutForm } from "../auth/sign-out-form";
 import { Button } from "../ui/button";
 import { Sheet, SheetContent, SheetTitle, SheetTrigger } from "../ui/sheet";
+import { UserButton } from "@clerk/nextjs";
 
 export const PublicHeader = async () => {
-	const session = await auth();
+	let session  = false;
+	const user = await currentUser();
+	if (user?.publicMetadata?.role === "admin") {
+		session = true;
+	}
 	const sourceId = await getSourceId();
 	const favourites = await redis.get<Favourites>(sourceId ?? "");
 	return (
@@ -41,10 +47,10 @@ export const PublicHeader = async () => {
 			</nav>
 			{session ? (
 				<div className="items-center md:flex gap-x-6 hidden">
-					<Link href={routes.admin.dashboard} className="text-foreground">
-						Backoffice
+					<Link href={routes.admin.dashboard} className="text-foreground text-base hover:text-primary duration-300 transition-all ease-in-out font-semibold">
+						BACKOFFICE
 					</Link>
-					<SignOutForm />
+					<UserButton/>
 				</div>
 			) : (
 				<div>
@@ -63,6 +69,7 @@ export const PublicHeader = async () => {
 									{favourites ? favourites.ids.length : 0}
 								</span>
 							</div>
+							
 						</Link>
 					</Button>
 					<Sheet>
@@ -82,6 +89,7 @@ export const PublicHeader = async () => {
 									>
 										{link.label}
 									</Link>
+									
 								))
 								}
 							</nav>
