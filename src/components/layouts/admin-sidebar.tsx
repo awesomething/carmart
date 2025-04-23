@@ -6,6 +6,7 @@ import Link from "next/link";
 import { routes } from "@/config/routes";
 import Image from "next/image";
 import { CarFrontIcon, LayoutDashboardIcon, SettingsIcon, UserIcon } from "lucide-react";
+import { ActiveLink } from "../ui/active-link";
 
 const navigation = [
     {
@@ -43,7 +44,7 @@ export const AdminSidebar = () => {
 
     const sidebarVariants: Variants = {
         expanded: { width: 256 },
-        collapsed: { width: 60 }
+        collapsed: { width: "fit-content" }
     }
 
     const menuTextVariants: Variants = {
@@ -51,6 +52,7 @@ export const AdminSidebar = () => {
             opacity: 1,
             width: "auto",
             marginLeft: 10,
+            
         },
         collapsed: { opacity: 0, width: 0 }
     }
@@ -77,7 +79,7 @@ export const AdminSidebar = () => {
                             <Image alt="EazyDev Dealership logo" src="/logo-1.png"
 
                                 fill={true}
-                                className="object-contain object-left mt-0 pt-0 "
+                                className="object-contain object-left mt-0 pt-0"
                             />
                         </motion.div>
                     ) : (
@@ -91,12 +93,19 @@ export const AdminSidebar = () => {
                 </AnimatePresence>
             </div>
             </Link>
-            <nav className="flex flex-col gap-2">
+            <nav className="flex flex-col gap-2 mt-4">
                     {navigation.map((item) => {
                         return(
-                            <Link href={item.href} key={item.name} className="flex items-center gap-2 text-white hover:bg-primary-900/50 rounded-md p-2 transition-colors duration-200 ease-in-out">
-                            {item.name}
-                            </Link>
+                            <ActiveLink href={item.href} key={item.name} className="flex items-center  text-white rounded-lg p-2 transition-colors duration-200 cursor-pointer w-full">
+                                <div className="flex items-center justify-center">
+                                    <item.icon aria-hidden="true" className="h-6 w-6 shrink-0"/>
+                                    <motion.span variants={menuTextVariants} initial="collapsed" animate={isSidebarExtended ? "expanded" : "collapsed"} exit="collapsed" transition={{ duration: 0.3, ease: "easeInOut"}} className="whitespace-nowrap overflow-hidden ">
+                                    {item.name}
+                                    </motion.span>
+                               
+                                </div>
+                         
+                            </ActiveLink>
                         )
                     })}
             </nav>

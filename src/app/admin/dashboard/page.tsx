@@ -1,12 +1,14 @@
-import {auth, clerkClient} from "@clerk/nextjs/server";
-import { redirect } from "next/navigation";
+import { endOfMonth, startOfMonth, subMonths } from "date-fns";
+
 
 export default function AdminDashboardPage() {
-    // const { userId } = auth;
+    const now = new Date();
+    const startOfThisMonth = startOfMonth(now);
+    const endOfThisMonth = endOfMonth(now);
+    const startOfLastMonth = startOfMonth(subMonths(now, 1))
     return (
         <div className="flex flex-col items-center justify-center h-screen">
-            {/* <h1 className="text-2xl font-bold">Admin Dashboard</h1>
-            <p className="mt-4 text-lg">Welcome to the admin dashboard!</p> */}
+            
         </div>
     );
 }

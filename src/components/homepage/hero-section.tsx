@@ -63,7 +63,7 @@ const HeroSection = async (props: AwaitedPageProps) => {
               <Button
                 asChild
                 variant="outline"
-                className="w-full hover:bg-slate-200"
+                className="w-full hover:bg-gray-800"
               >
                 <Link href={routes.home}>
                   Clear Filters ({totalFiltersApplied})

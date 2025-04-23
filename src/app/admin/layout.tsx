@@ -3,7 +3,7 @@ import { AdminSidebar } from "@/components/layouts/admin-sidebar";
 import { PropsWithChildren } from "react";
 
 export default async function AdminLayout({children}: PropsWithChildren){
-    return <div className="flex bg-primary-900 min-h-screen w-full justify-center">
+    return <div className="flex bg-gray-800 min-h-screen w-full justify-center">
         <AdminSidebar/>
         <div className="flex flex-col flex-1 overflow-hidden">
            <AdminHeader/>

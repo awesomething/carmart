@@ -47,7 +47,7 @@ export const PublicHeader = async () => {
 			</nav>
 			{session ? (
 				<div className="items-center md:flex gap-x-6 hidden">
-					<Link href={routes.admin.dashboard} className="text-foreground text-base hover:text-primary duration-300 transition-all ease-in-out font-semibold">
+					<Link href={routes.admin.dashboard} className="text-foreground text-base hover:text-primary duration-300 transition-all ease-in-out">
 						BACKOFFICE
 					</Link>
 					<UserButton/>
