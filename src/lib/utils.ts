@@ -50,36 +50,39 @@ export const buildClassifiedFilterQuery = (
     "ulezCompliance",
   ];
 
-  const mapParamsToFields = keys.reduce((acc, key) => {
-    const value = searchParams?.[key] as string | undefined;
-    if (!value) return acc;
+  const mapParamsToFields = keys.reduce(
+    (acc, key) => {
+      const value = searchParams?.[key] as string | undefined;
+      if (!value) return acc;
 
-    if (taxonomyFilters.includes(key)) {
-      acc[key] = { id: Number(value) };
-    } else if (enumFilters.includes(key)) {
-      acc[key] = value.toUpperCase();
-    } else if (numFilters.includes(key)) {
-      acc[key] = Number(value);
-    } else if (key in rangeFilters) {
-      const field = rangeFilters[key as keyof typeof rangeFilters];
-      acc[field] = acc[field] || {};
-      if (key.startsWith("min")) {
-        acc[field].gte = Number(value);
-      } else if (key.startsWith("max")) {
-        acc[field].lte = Number(value);
+      if (taxonomyFilters.includes(key)) {
+        acc[key] = { id: Number(value) };
+      } else if (enumFilters.includes(key)) {
+        acc[key] = value.toUpperCase();
+      } else if (numFilters.includes(key)) {
+        acc[key] = Number(value);
+      } else if (key in rangeFilters) {
+        const field = rangeFilters[key as keyof typeof rangeFilters];
+        acc[field] = acc[field] || {};
+        if (key.startsWith("min")) {
+          acc[field].gte = Number(value);
+        } else if (key.startsWith("max")) {
+          acc[field].lte = Number(value);
+        }
+      } else if (key in rangeFilters) {
+        const field = rangeFilters[key as keyof typeof rangeFilters];
+        acc[field] = acc[field] || {};
+        if (key.startsWith("min")) {
+          acc[field].gte = Number(value);
+        } else if (key.startsWith("max")) {
+          acc[field].lte = Number(value);
+        }
       }
-    } else if (key in rangeFilters) {
-      const field = rangeFilters[key as keyof typeof rangeFilters];
-      acc[field] = acc[field] || {};
-      if (key.startsWith("min")) {
-        acc[field].gte = Number(value);
-      } else if (key.startsWith("max")) {
-        acc[field].lte = Number(value);
-      }
-    }
 
-    return acc;
-  }, {} as { [key: string]: any });
+      return acc;
+    },
+    {} as { [key: string]: any }
+  );
 
   return {
     status: ClassifiedStatus.LIVE,
@@ -192,8 +195,8 @@ export function formatColour(colour: Colour) {
       return "Blue";
     case Colour.BROWN:
       return "Brown";
-    case Colour.GREY:
-      return "Grey";
+    // case Colour.GREY:
+    //   return "Grey";
     case Colour.GREEN:
       return "Green";
     case Colour.RED:
@@ -210,8 +213,8 @@ export function formatColour(colour: Colour) {
       return "Yellow";
     case Colour.PURPLE:
       return "Purple";
-    case Colour.PINK:
-      return "Pink";
+    // case Colour.PINK:
+    //   return "Pink";
     case Colour.ORANGE:
       return "Orange";
 
@@ -263,3 +266,7 @@ export const formatDate = (date: string, time: string) => {
   parsedDate.setHours(parsedTime.getHours(), parsedTime.getMinutes(), 0, 0);
   return parsedDate;
 };
+export function calculatePercentageChange(current: number, previous: number) {
+  if (previous === 0) return current > 0 ? 100: current < 0 ? -100 : 0;
+  return ((current - previous) / Math.abs(previous)) * 100;
+}

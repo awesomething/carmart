@@ -10,7 +10,7 @@ import {
 	type MultiStepFormComponentProps,
 	MultiStepFormEnum,
 } from "@/config/types";
-import { toast } from "@/hooks/use-toast";
+import { useToast } from "@/hooks/use-toast";
 import { formatDate } from "@/lib/utils";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Loader2 } from "lucide-react";
@@ -30,6 +30,7 @@ import {
 import { Input } from "../ui/input";
 
 export const SubmitDetails = (props: MultiStepFormComponentProps) => {
+	const {toast} = useToast()
 	const { params, searchParams } = props;
 	const router = useRouter();
 
