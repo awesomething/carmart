@@ -125,8 +125,6 @@ async function getDashboardData() {
     previousTotalSales
   );
 
-  console.log({ totalSales, previousTotalSales, salesPercentageChange });
-
   const carsSoldPercentageChange = calculatePercentageChange(
     carsSoldLastMonth,
     carsSoldThisMonth

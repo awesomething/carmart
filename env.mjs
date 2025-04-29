@@ -12,6 +12,11 @@ export const env = createEnv({
     ETHEREAL_USER: z.string(),
     ETHEREAL_PASS: z.string(),
     X_AUTH_TOKEN: z.string(),
+    OPENAI_API_KEY: z.string(),
+    NEXT_PUBLIC_S3_BUCKET_REGION: z.string(),
+    NEXT_PUBLIC_S3_BUCKET_NAME: z.string(),
+    NEXT_PUBLIC_S3_URL: z.string()
+
   },
 
   client: {
@@ -34,5 +39,9 @@ export const env = createEnv({
     ETHEREAL_USER: process.env.ETHEREAL_USER || "",
     ETHEREAL_PASS: process.env.ETHEREAL_PASS || "",
     NEXTAUTH_SECRET: process.env.NEXTAUTH_SECRET || "",
+    OPENAI_API_KEY: process.env.OPENAI_API_KEY || "",
+    NEXT_PUBLIC_S3_BUCKET_REGION: process.env.NEXT_PUBLIC_S3_BUCKET_REGION,
+    NEXT_PUBLIC_S3_BUCKET_NAME: process.env.NEXT_PUBLIC_S3_BUCKET_NAME,
+    NEXT_PUBLIC_S3_URL: process.env.NEXT_PUBLIC_S3_URL
   },
 });

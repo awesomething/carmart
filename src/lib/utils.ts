@@ -1,4 +1,5 @@
 import { ClassifiedFilterSchema } from "@/app/schemas/classified.schema";
+import prettyBytes from "pretty-bytes"
 import { AwaitedPageProps } from "@/config/types";
 import {
   BodyType,
@@ -269,4 +270,12 @@ export const formatDate = (date: string, time: string) => {
 export function calculatePercentageChange(current: number, previous: number) {
   if (previous === 0) return current > 0 ? 100 : (current < 0 ? -100 : 0);
   return ((current - previous) / Math.abs(previous)) * 100;
+}
+
+export const convertToMb = (bytes: number) =>{
+  return prettyBytes(bytes, {
+    bits: false,
+    maximumFractionDigits: 1,
+    space: false
+  });
 }
