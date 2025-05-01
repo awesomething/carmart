@@ -32,7 +32,7 @@ export const StreamableSkeleton = (props: StreamableSkeletonProps) => {
     return (
         <div className="flex flex-col container mx-auto py-12">
             {/* Main container for the skeleton */}
-            <div className="flex flex-col md:!flex-row">
+            <div className="flex flex-col md:flex-row">
                 {/* Image section */}
                 <div className="md:w-1/2 relative">
                     {image ? (
@@ -101,85 +101,85 @@ export const StreamableSkeleton = (props: StreamableSkeletonProps) => {
                             <Skeleton className="h-20 w-full mb-4 bg-gray-800" />
                         )}
                         {/* Grid of additional attributes */}
-                        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 sm:gap-2 md:gap-4 lg:gap-6">
+                        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 sm:gap-2 md:gap-2">
                             {/* ULEZ compliance */}
-                            <div className="bg-gray-800 rounded-lg shadow-xs p-4 text-center w-15">
+                            <div className="bg-gray-800 rounded-lg shadow-xs p-2 text-center w-15">
                                 {ulezCompliance === "EXEMPT" ? (
                                     <CheckIcon className="w-6 h-6 mx-auto text-green-500" />
                                 ) : (
                                     <XIcon className="w-6 h-6 mx-auto text-red-500" />
                                 )}
                                 {ulezCompliance ? (
-                                    <p className="text-sm font-medium mt-2">
+                                    <p className="text-sm font-medium mt-2 truncate">
                                         {formatUlezCompliance(ulezCompliance)}
                                     </p>
                                 ) : !done ? (
                                     <Skeleton className="h-4 w-16 mx-auto sm:w-1 md:w-9 mt-2" />
                                 ) : (
-                                    <p className="text-sm font-medium mt-2">UNKNOWN</p>
+                                    <p className="text-sm font-light truncate mt-2">UNKNOWN</p>
                                 )}
                             </div>
                             {/* Body type */}
                             <div className="bg-gray-800 rounded-lg shadow-xs p-4 text-center w-15">
                                 <CarIcon className="w-6 h-6 mx-auto" />
                                 {bodyType ? (
-                                    <p className="text-sm font-medium mt-2">
+                                    <p className="text-sm font-medium mt-2 truncate">
                                         {formatBodyType(bodyType)}
                                     </p>
                                 ) : !done ? (
                                     <Skeleton className="h-4 w-16 sm:w-3 md:w-9 mx-auto mt-2" />
                                 ) : (
-                                    <p className="text-sm font-medium mt-2">UNKNOWN</p>
+                                    <p className="text-sm font-light truncate mt-2">UNKNOWN</p>
                                 )}
                             </div>
                             {/* VRM */}
                             <div className="bg-gray-800 rounded-lg shadow-xs p-4 text-center w-15">
                                 <Fingerprint className="w-6 h-6 mx-auto" />
                                 {vrm ? (
-                                    <p className="text-sm font-medium mt-2">{vrm}</p>
+                                    <p className="text-sm font-medium mt-2 truncate">{vrm}</p>
                                 ) : !done ? (
                                     <Skeleton className="h-4 w-16 sm:w-3 md:w-9 mx-auto mt-2" />
                                 ) : (
-                                    <p className="text-sm font-medium mt-2">UNKNOWN</p>
+                                    <p className="text-sm font-light truncate mt-2">UNKNOWN</p>
                                 )}
                             </div>
                             {/* Fuel type icon */}
                             <div className="bg-gray-800 rounded-lg shadow-xs p-4 text-center w-15">
                                 <FuelIcon className="w-6 h-6 mx-auto" />
                                 {fuelType ? (
-                                    <p className="text-sm font-medium mt-2">
+                                    <p className="text-sm font-medium mt-2 truncate">
                                         {formatFuelType(fuelType)}
                                     </p>
                                 ) : !done ? (
                                     <Skeleton className="h-4 w-16 sm:w-3 md:w-9 mx-auto mt-2" />
                                 ) : (
-                                    <p className="text-sm font-medium mt-2">UNKNOWN</p>
+                                    <p className="text-sm font-light truncate mt-2">UNKNOWN</p>
                                 )}
                             </div>
                             {/* Transmission icon */}
                             <div className="bg-gray-800 rounded-lg shadow-xs p-4 text-center w-15">
                                 <PowerIcon className="w-6 h-6 mx-auto" />
                                 {transmission ? (
-                                    <p className="text-sm font-medium mt-2">
+                                    <p className="text-sm font-medium mt-2 truncate">
                                         {formatTransmission(transmission)}
                                     </p>
                                 ) : !done ? (
                                     <Skeleton className="h-4 w-16 sm:w-3 md:w-9 mx-auto mt-2" />
                                 ) : (
-                                    <p className="text-sm font-medium mt-2">UNKNOWN</p>
+                                    <p className="text-sm font-light truncate mt-2">UNKNOWN</p>
                                 )}
                             </div>
                             {/* Odometer reading icon */}
                             <div className="bg-gray-800 rounded-lg shadow-xs p-4 text-center w-15">
                                 <GaugeIcon className="w-6 h-6 mx-auto" />
                                 {odoReading && odoUnit ? (
-                                    <p className="text-sm font-medium mt-2">
+                                    <p className="text-sm font-medium mt-2 truncate">
                                         {formatNumber(odoReading)} {formatOdometerUnit(odoUnit)}
                                     </p>
                                 ) : !done ? (
                                     <Skeleton className="h-4 w-16 sm:w-3 md:w-9 mx-auto mt-2" />
                                 ) : (
-                                    <p className="text-sm font-medium mt-2">UNKNOWN</p>
+                                    <p className="text-sm font-light truncate mt-2">UNKNOWN</p>
                                 )}
                             </div>
                             {/* Seats icon */}
@@ -190,7 +190,7 @@ export const StreamableSkeleton = (props: StreamableSkeletonProps) => {
                                 ) : !done ? (
                                     <Skeleton className="h-4 w-16 sm:w-3 md:w-9 mx-auto mt-2" />
                                 ) : (
-                                    <p className="text-sm font-medium mt-2">UNKNOWN</p>
+                                    <p className="text-sm font-light truncate mt-2">UNKNOWN</p>
                                 )}
                             </div>
                             {/* Doors icon */}
@@ -201,7 +201,7 @@ export const StreamableSkeleton = (props: StreamableSkeletonProps) => {
                                 ) : !done ? (
                                     <Skeleton className="h-4 w-16 sm:w-3 md:w-9 mx-auto mt-2" />
                                 ) : (
-                                    <p className="text-sm font-medium mt-2">UNKNOWN</p>
+                                    <p className="text-sm font-light truncate mt-2">UNKNOWN</p>
                                 )}
                             </div>
                         </div>

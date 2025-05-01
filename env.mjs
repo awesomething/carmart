@@ -15,7 +15,8 @@ export const env = createEnv({
     OPENAI_API_KEY: z.string(),
     NEXT_PUBLIC_S3_BUCKET_REGION: z.string(),
     NEXT_PUBLIC_S3_BUCKET_NAME: z.string(),
-    NEXT_PUBLIC_S3_URL: z.string()
+    NEXT_PUBLIC_S3_URL: z.string(),
+    GEMINI_API_KEY: z.string()
 
   },
 
@@ -42,6 +43,7 @@ export const env = createEnv({
     OPENAI_API_KEY: process.env.OPENAI_API_KEY || "",
     NEXT_PUBLIC_S3_BUCKET_REGION: process.env.NEXT_PUBLIC_S3_BUCKET_REGION,
     NEXT_PUBLIC_S3_BUCKET_NAME: process.env.NEXT_PUBLIC_S3_BUCKET_NAME,
-    NEXT_PUBLIC_S3_URL: process.env.NEXT_PUBLIC_S3_URL
+    NEXT_PUBLIC_S3_URL: process.env.NEXT_PUBLIC_S3_URL,
+    GEMINI_API_KEY: process.env.GEMINI_API_KEY
   },
 });
