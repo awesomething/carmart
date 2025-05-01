@@ -1,4 +1,5 @@
 import { ClassifiedFilterSchema } from "@/app/schemas/classified.schema";
+import prettyBytes from "pretty-bytes"
 import { AwaitedPageProps } from "@/config/types";
 import {
   BodyType,
@@ -267,10 +268,11 @@ export const formatDate = (date: string, time: string) => {
   return parsedDate;
 };
 export function calculatePercentageChange(current: number, previous: number) {
-  if (previous === 0) return current > 0 ? 100: current < 0 ? -100 : 0;
+  if (previous === 0) return current > 0 ? 100 : (current < 0 ? -100 : 0);
   return ((current - previous) / Math.abs(previous)) * 100;
 }
 
+<<<<<<< HEAD
 export function generateYears(minYear: number, maxYear?: number): string[] {
 	const currentYear = maxYear ? maxYear : new Date().getFullYear();
 	const years: string[] = [];
@@ -281,3 +283,12 @@ export function generateYears(minYear: number, maxYear?: number): string[] {
 
 	return years;
 }
+=======
+export const convertToMb = (bytes: number) =>{
+  return prettyBytes(bytes, {
+    bits: false,
+    maximumFractionDigits: 1,
+    space: false
+  });
+}
+>>>>>>> ad458fba23e4c4c6a3d8d368fb17bcc26c2a1bc7

@@ -1,4 +1,5 @@
 import {KPICards} from "@/components/admin/dashboard/kpi-cards";
+import { SalesChart } from "@/components/admin/dashboard/sales-chart";
 import { prisma } from "@/lib/prisma";
 import { calculatePercentageChange } from "@/lib/utils";
 import { ClassifiedStatus, CustomerStatus } from "@prisma/client";
@@ -124,8 +125,6 @@ async function getDashboardData() {
     previousTotalSales
   );
 
-  console.log({ totalSales, previousTotalSales, salesPercentageChange });
-
   const carsSoldPercentageChange = calculatePercentageChange(
     carsSoldLastMonth,
     carsSoldThisMonth
@@ -162,7 +161,7 @@ async function getChartData(){
   const now = new Date();
   const monthsData = [];
 
-  for(let i = 0; i <= 12; i++){
+  for(let i = 0; i < 12; i++){
     const startDate = startOfMonth(subMonths(now, i));
     const endDate = endOfMonth(startDate)
     const monthlySales = await prisma.classified.aggregate({
@@ -195,7 +194,7 @@ export default async function AdminDashboardPage() {
   return (
     <>
       <KPICards data={dashboardData} />
-      {/* <SalesChart data={chartData}/> */}
+      <SalesChart data={chartData}/>
     </>
   );
 }

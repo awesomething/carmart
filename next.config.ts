@@ -1,6 +1,7 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
+<<<<<<< HEAD
 	compress: true,
 	reactStrictMode: true,
 	compiler: {
@@ -46,6 +47,14 @@ const nextConfig: NextConfig = {
 			},
 		];
 	},
+=======
+  experimental: {
+    authInterrupts: true,
+  },
+  images: {
+    remotePatterns: [{ hostname: "*" }],
+  },
+>>>>>>> ad458fba23e4c4c6a3d8d368fb17bcc26c2a1bc7
 };
 
 export default nextConfig;

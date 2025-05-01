@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import { validateIdSchema } from "@/app/schemas/id.schema";
 import { routes } from "@/config/routes";
 import type { PageProps } from "@/config/types";
@@ -22,4 +23,13 @@ export default async function EditClassified(props: PageProps) {
 	if (!classified) redirect(routes.admin.classifieds);
 
 	return <ClassifiedForm classified={classified} />;
+=======
+import { PageProps } from "@/config/types";
+
+export default async function EditClassified(porps: PageProps){
+    return(
+    <div className="text-white">
+    Edit Classifieds
+    </div>)
+>>>>>>> ad458fba23e4c4c6a3d8d368fb17bcc26c2a1bc7
 }
