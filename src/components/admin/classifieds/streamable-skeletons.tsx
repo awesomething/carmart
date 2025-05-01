@@ -3,7 +3,7 @@ import { Skeleton } from "@/components/ui/skeleton";
 import { imageSources } from "@/config/constants";
 import { formatBodyType, formatColour, formatFuelType, formatNumber, formatOdometerUnit, formatTransmission, formatUlezCompliance } from "@/lib/utils";
 import { Make } from "@prisma/client";
-import { CarFrontIcon, CarIcon, CheckIcon, Fingerprint, FuelIcon, GaugeIcon, PowerIcon, UserIcon, UsersIcon, XIcon } from "lucide-react";
+import { CarFrontIcon, CarIcon, CheckIcon, Fingerprint, FuelIcon, GaugeIcon, PowerIcon, UsersIcon, XIcon } from "lucide-react";
 import Image from "next/image";
 
 export type StreamableSkeletonProps = Partial<Omit<ClassifiedAI, "make">> & {

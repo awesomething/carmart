@@ -111,6 +111,8 @@ export async function generateClassifieds(
     valueStream.update(classified);
     uiStream.done();
     valueStream.done();
+
+    
   }
 
   processEvents();
@@ -120,7 +122,9 @@ export async function generateClassifieds(
     display: uiStream.value,
     role: "assistant" as const,
     classified: valueStream.value,
+    
   };
+ 
 }
 
 type ServerMessage = {
