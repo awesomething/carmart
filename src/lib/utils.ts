@@ -272,10 +272,31 @@ export function calculatePercentageChange(current: number, previous: number) {
   return ((current - previous) / Math.abs(previous)) * 100;
 }
 
+export function generateYears(minYear: number, maxYear?: number): string[] {
+	const currentYear = maxYear ? maxYear : new Date().getFullYear();
+	const years: string[] = [];
+
+	for (let year = currentYear; year >= minYear; year--) {
+		years.push(`${year}`);
+	}
+
+	return years;
+}
 export const convertToMb = (bytes: number) =>{
   return prettyBytes(bytes, {
     bits: false,
     maximumFractionDigits: 1,
     space: false
   });
+}
+
+export function formatClassifiedStatus(status: ClassifiedStatus) {
+	switch (status) {
+		case ClassifiedStatus.LIVE:
+			return "Live";
+		case ClassifiedStatus.SOLD:
+			return "Sold";
+		case ClassifiedStatus.DRAFT:
+			return "Draft";
+	}
 }
