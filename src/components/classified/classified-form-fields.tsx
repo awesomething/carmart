@@ -32,20 +32,19 @@ import { NumberInput } from "../ui/number-input";
 import { Select } from "../ui/select";
 import { Skeleton } from "../ui/skeleton";
 import { TaxonomySelects } from "./taxonomy-selects";
-import { RichTextEditor } from "../admin/classifieds/rich-text-editor";
 
-// const RichTextEditor = dynamic(
-// 	() => import("./rich-text-editor").then((mod) => mod.RichTextEditor),
-// 	{
-// 		ssr: false,
-// 		loading: () => (
-// 			<div className="space-y-2 flex flex-col">
-// 				<Skeleton className="w-24 h-4 bg-primary-800" />
-// 				<Skeleton className="h-[200px] w-full bg-primary-800" />
-// 			</div>
-// 		),
-// 	},
-// );
+const RichTextEditor = dynamic(
+	() => import("./rich-text-editor").then((mod) => mod.RichTextEditor),
+	{
+		ssr: false,
+		loading: () => (
+			<div className="space-y-2 flex flex-col">
+				<Skeleton className="w-24 h-4 bg-primary-800" />
+				<Skeleton className="h-[200px] w-full bg-primary-800" />
+			</div>
+		),
+	},
+);
 
 const years = generateYears(1925);
 

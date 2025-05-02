@@ -68,4 +68,13 @@ export type PrevState = {
           include:{make: true}
       }>
   }
+
+  export interface ProgressArgs{
+    sent: number;
+    total: number;
+    uuid: string;
+    percentage: number;
+    key?: string;
+}
+
   

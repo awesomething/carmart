@@ -30,7 +30,20 @@ export const RichTextEditor = (props: TextEditorProps) =>{
         importcss_apppend: true,
         browser_spellcheck: true,
         highlight_on_focus: true,
+        link_default_target:"_blank",
+        link_assume_external_targets: true,
+        autolink_pattern: /^(https?:\/\/|www\.)(.+)$/i,
         newline_behavior: "linebreak",
+
+        // Configure paste behavior
+		paste_postprocess: (plugin, args) => {
+			const links = args.node.getElementsByTagName("a");
+			for (let i = 0; i < links.length; i++) {
+				links[i].style.color = "#3b82f6";
+				links[i].style.textDecoration = "underline";
+			}
+		},
+      
         plugins: ["lists", "link", "wordcount", "importcss", "media"],
         valid_elements: "p,a[href|rel|target], strong/b,em/i,u,strike,br,ul,ol,li",
         toolbar:"undo redo | styles | formatselect bold italic | bullist numlist | link",
@@ -48,7 +61,7 @@ export const RichTextEditor = (props: TextEditorProps) =>{
         <FormLabel htmlFor={name}>
             {label}
         </FormLabel>
-        <Editor {...props.config} init={init} initialValue={value} apiKey={env.NEXT_PUBLIC_TINYMCE_API_KEY}
+        <Editor {...props.config} init={init} value={value} apiKey={env.NEXT_PUBLIC_TINYMCE_API_KEY}
         onEditorChange={handleEditorChange}
         />
     </div>
