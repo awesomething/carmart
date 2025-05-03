@@ -1,6 +1,10 @@
 
 import { UpdateClassifiedType } from "@/app/schemas/classified.schema";
+<<<<<<< HEAD
 import { Classified, Prisma } from "@prisma/client";
+=======
+import { Prisma } from "@prisma/client";
+>>>>>>> db863a9f46b10c90e4abf79fb1572b91670f752f
 import { ChangeEvent } from "react";
 
 
@@ -78,6 +82,7 @@ export type PrevState = {
     key?: string;
 }
 
+<<<<<<< HEAD
 export type ClassifiedImages = UpdateClassifiedType["images"];
 
 export type ClassifiedKeys = keyof Pick<
@@ -92,3 +97,7 @@ export type ClassifiedKeys = keyof Pick<
 	| "price"
 	| "createdAt"
 >;
+=======
+
+export type ClassifiedImages = UpdateClassifiedType["images"];
+>>>>>>> db863a9f46b10c90e4abf79fb1572b91670f752f

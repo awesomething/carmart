@@ -90,7 +90,7 @@ export const CreateClassifiedDialog = () => {
   });
 
   return (
-    <Dialog open={true} onOpenChange={() => null}>
+    <Dialog open={isModalOpen} onOpenChange={setIsModalOpen}>
       <DialogTrigger asChild>
         <Button className="ml-4" size="sm">
           Create New
