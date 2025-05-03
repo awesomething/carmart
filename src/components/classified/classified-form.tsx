@@ -24,6 +24,7 @@ import {
 } from "../ui/form";
 import { Select } from "../ui/select";
 import { ClassifiedFormFields } from "./classified-form-fields";
+import { MultiImageUploader } from "./multi-image-uploader";
 // import { MultiImageUploader } from "../admin/classifieds/multi-image-uploader";
 
 interface ClassifiedFormProps {
@@ -113,7 +114,7 @@ export const ClassifiedForm = ({ classified }: ClassifiedFormProps) => {
                     Images (up to {MAX_IMAGES})
                   </FormLabel>
                   <FormControl>
-                    {/* <MultiImageUploader name={name} onChange={onChange} /> */}
+                    <MultiImageUploader name={name} onChange={onChange} />
                   </FormControl>
                   <FormMessage />
                 </FormItem>
