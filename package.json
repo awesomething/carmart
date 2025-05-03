@@ -40,6 +40,7 @@
     "ai": "^4.3.10",
     "aws-sdk": "^2.1692.0",
     "babel-plugin-react-compiler": "^19.1.0-rc.1",
+    "badge": "^1.0.3",
     "bcrypt": "^5.1.1",
     "bcryptjs": "^3.0.2",
     "class-variance-authority": "^0.7.1",
