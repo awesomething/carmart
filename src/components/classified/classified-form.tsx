@@ -25,7 +25,7 @@ import {
 import { Select } from "../ui/select";
 import { ClassifiedFormFields } from "./classified-form-fields";
 import { MultiImageUploader } from "./multi-image-uploader";
-// import { MultiImageUploader } from "../admin/classifieds/multi-image-uploader";
+
 
 interface ClassifiedFormProps {
   classified: ClassifiedWithImages;

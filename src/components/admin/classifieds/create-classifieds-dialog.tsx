@@ -76,7 +76,7 @@ export const CreateClassifiedDialog = () => {
         return;
       }
       
-      // Add success toast if needed
+      // Add success toast 
       toast({
         title: "Success",
         description: "Classified created successfully",
@@ -84,7 +84,7 @@ export const CreateClassifiedDialog = () => {
         duration: 2500,
       });
       
-      // Close modal if needed
+      // Close modal 
       setIsModalOpen(false);
     });
   });

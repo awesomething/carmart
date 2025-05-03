@@ -80,3 +80,21 @@ export type PrevState = {
 
 
 export type ClassifiedImages = UpdateClassifiedType["images"];
+
+export type CustomerKeys = keyof Pick<
+	Prisma.CustomerGetPayload<{ include: { classified: true } }>,
+	| "id"
+	| "email"
+	| "mobile"
+	| "firstName"
+	| "lastName"
+	| "updatedAt"
+	| "createdAt"
+	| "status"
+	| "bookingDate"
+	| "classified"
+>;
+
+export type CustomerWithClassified = Prisma.CustomerGetPayload<{
+	include: { classified: true };
+}>;
