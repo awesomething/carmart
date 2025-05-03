@@ -1,5 +1,6 @@
 
-import { Prisma } from "@prisma/client";
+import { UpdateClassifiedType } from "@/app/schemas/classified.schema";
+import { Classified, Prisma } from "@prisma/client";
 import { ChangeEvent } from "react";
 
 
@@ -77,4 +78,17 @@ export type PrevState = {
     key?: string;
 }
 
-  
+export type ClassifiedImages = UpdateClassifiedType["images"];
+
+export type ClassifiedKeys = keyof Pick<
+	Classified,
+	| "status"
+	| "title"
+	| "vrm"
+	| "id"
+	| "views"
+	| "year"
+	| "colour"
+	| "price"
+	| "createdAt"
+>;
