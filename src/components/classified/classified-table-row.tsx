@@ -9,7 +9,7 @@ import { ActionButtons } from "./action-buttons";
 
 export const ClassifiedsTableRow = (classified: ClassifiedWithImages) => {
 	return (
-		<TableRow className="text-gray-500 border-white/5 hover:bg-primary-300">
+		<TableRow className="text-gray-500 border-white/5 hover:bg-gray-900">
 			<TableCell className="font-medium">{classified.id}</TableCell>
 			<TableCell className="p-0">
 				<Image

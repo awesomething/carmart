@@ -6,8 +6,6 @@ model CustomerLifecycle {
     newStatus CustomerStatus @map("new_status")
     createdAt DateTime @default(now()) @map("created_at")
     updatedAt DateTime @updatedAt @map("updated_at") 
-
-    @@unique([customerId])
     @@map("customer_lifecycle")
 
 }

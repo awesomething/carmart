@@ -55,7 +55,7 @@ export const ActionButtons = ({
 				className="p-2 h-fit"
 				asChild
 			>
-				<Link href={"/"}>
+				<Link href={routes.admin.editCustomer(customer.id)}>
 					<Tooltip id="edit-tooltip" />
 					<PencilIcon className="h-4 w-4 outline-none" />
 				</Link>
