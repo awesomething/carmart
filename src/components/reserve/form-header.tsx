@@ -1,6 +1,8 @@
 "use client"
 import { cn } from "@/lib/utils";
+import { Loader2 } from "lucide-react";
 import { useSearchParams } from "next/navigation";
+import { Suspense } from "react";
 
 export const FormHeader = () => {
     const params = useSearchParams();
@@ -11,6 +13,12 @@ export const FormHeader = () => {
         
     ];
     return (
+
+        <Suspense fallback={
+            <div className="flex justify-center items-center h-screen">
+                <Loader2 className="animate-spin" />
+            </div>
+        }>
         <div className="flex justify-between bg-primary p-4 shadow-lg !max-w-4xl">
             <div className="flex flex-col justify-between flex-1">
                 <h1 className="text-3xl font-bold text-white">{steps.find(({id}) => params.get("step")===id)?.title}</h1>
@@ -24,5 +32,6 @@ export const FormHeader = () => {
                 ))}
             </div>
         </div>
+        </Suspense>
     )
 }

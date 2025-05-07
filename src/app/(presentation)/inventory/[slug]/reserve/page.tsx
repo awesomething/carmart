@@ -1,11 +1,13 @@
-
+"use client"
 import { MultiStepFormSchema } from "@/app/schemas/form.schema";
 import { SelectDate } from "@/components/reserve/select-date";
 import { SubmitDetails } from "@/components/reserve/submit-details";
 import { Welcome } from "@/components/reserve/welcome";
 import { MultiStepFormEnum, PageProps } from "@/config/types";
 import { prisma } from "@/lib/prisma";
+import { Loader2 } from "lucide-react";
 import { notFound } from "next/navigation";
+import { Suspense } from "react";
 
 
 
@@ -41,10 +43,21 @@ export default async function ReservePage (props: PageProps){
 
     const Component = MAP_STEP_TO_COMPONENT[data.step];
     return (
-        <Component 
+
+        <Suspense
+        fallback={
+          <div className="flex justify-center items-center h-screen">
+            <Loader2 className="animate-spin" />
+          </div>
+        }
+      >
+ <Component 
         searchParams={searchParams}
         params={params}
         classified={classified}
         />
+
+      </Suspense>
+       
     )
 }

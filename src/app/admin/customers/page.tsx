@@ -13,6 +13,8 @@ import { Table, TableBody } from "@/components/ui/table";
 import { routes } from "@/config/routes";
 import type { CustomerKeys, PageProps } from "@/config/types";
 import { prisma } from "@/lib/prisma";
+import { Loader2 } from "lucide-react";
+import { Suspense } from "react";
 
 export default async function CustomersPage(props: PageProps) {
   const searchParams = await props.searchParams;
@@ -56,7 +58,16 @@ export default async function CustomersPage(props: PageProps) {
 
   return (
     <>
-      <AdminCustomersHeader searchParams={searchParams} />
+      <Suspense
+        fallback={
+          <div className="flex justify-center items-center h-screen">
+            <Loader2 className="animate-spin" />
+          </div>
+        }
+      >
+        <AdminCustomersHeader searchParams={searchParams} />
+      
+
       <Table>
         <CustomersTableHeader
           sort={sort as CustomerKeys}
@@ -67,14 +78,18 @@ export default async function CustomersPage(props: PageProps) {
             <CustomerTableRow key={customer.id} {...customer} />
           ))}
         </TableBody>
-        <AdminTableFooter
-          baseURL={routes.admin.customers}
-          searchParams={searchParams}
-          disabled={!customers.length}
-          totalPages={totalPages}
-          cols={10}
-        />
+        
+          <AdminTableFooter
+            baseURL={routes.admin.customers}
+            searchParams={searchParams}
+            disabled={!customers.length}
+            totalPages={totalPages}
+            cols={10}
+          />
+        
+
       </Table>
+      </Suspense> 
     </>
   );
 }

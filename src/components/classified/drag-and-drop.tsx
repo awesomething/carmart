@@ -1,4 +1,5 @@
 import { MAX_IMAGES, MAX_IMAGE_SIZE } from "@/config/constants";
+import { ClassifiedImages } from "@/config/types";
 
 import { cn, convertToMb } from "@/lib/utils";
 import { ImagePlus, Loader2 } from "lucide-react";
@@ -9,7 +10,7 @@ import {
   useRef,
   useState,
 } from "react";
-import { ClassifiedImages } from "./multi-image-uploader";
+
 
 interface DragAndDropProps {
   isUploading: boolean;

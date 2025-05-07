@@ -1,3 +1,5 @@
+"use client"
+
 import { RadioFilter } from "@/components/shared/radio-filter";
 import type { AwaitedPageProps } from "@/config/types";
 import { CustomerStatus } from "@prisma/client";

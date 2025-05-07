@@ -6,6 +6,8 @@ const nextConfig: NextConfig = {
 	compiler: {
 		removeConsole: process.env.NODE_ENV === "production",
 	},
+
+	
 	experimental: {
 		authInterrupts: true,
 		nodeMiddleware: true,
@@ -13,6 +15,9 @@ const nextConfig: NextConfig = {
 		optimizeCss: true,
 		optimizeServerReact: true,
 		optimizePackageImports: ["lucide-react", "date-fns"],
+		
+		
+		
 	},
 	images: {
 		remotePatterns: [{ hostname: "*" }],
@@ -47,5 +52,6 @@ const nextConfig: NextConfig = {
 		];
 	},
 };
+
 
 export default nextConfig;

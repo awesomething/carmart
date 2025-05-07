@@ -8,7 +8,7 @@ import { getSourceId } from "@/lib/source-id";
 import { HeartIcon, MenuIcon } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
-import { SignOutForm } from "../auth/sign-out-form";
+
 import { Button } from "../ui/button";
 import { Sheet, SheetContent, SheetTitle, SheetTrigger } from "../ui/sheet";
 import { UserButton } from "@clerk/nextjs";

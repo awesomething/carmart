@@ -1,5 +1,9 @@
 import { ClassifiedsList } from "@/components/inventory/classified-list";
-import type { AwaitedPageProps, Favourites, PageProps } from "../../../config/types";
+import type {
+  AwaitedPageProps,
+  Favourites,
+  PageProps,
+} from "../../../config/types";
 import { prisma } from "../../../lib/prisma";
 import { ClassifiedStatus, Prisma } from "@prisma/client";
 import { CLASSIFIEDS_PER_PAGE } from "@/config/constants";
@@ -13,11 +17,10 @@ import { buildClassifiedFilterQuery } from "@/lib/utils";
 import { Suspense } from "react";
 import { InventorySkeleton } from "@/components/inventory/inventory-skeleton";
 import { DialogFilters } from "@/components/inventory/dialog-filters";
-
-
+import { Loader2 } from "lucide-react";
 
 const getInventory = async (searchParams: AwaitedPageProps["searchParams"]) => {
-  const validPage = PageSchema.parse(searchParams?.page)
+  const validPage = PageSchema.parse(searchParams?.page);
   //get the current page
   const page = validPage ? validPage : 1;
 
@@ -33,12 +36,12 @@ const getInventory = async (searchParams: AwaitedPageProps["searchParams"]) => {
 
 export default async function InventoryPage(props: PageProps) {
   const searchParams = await props.searchParams;
-  const classifieds =  getInventory(searchParams);
+  const classifieds = getInventory(searchParams);
   const count = await prisma.classified.count({
     where: buildClassifiedFilterQuery(searchParams),
   });
   const minMaxResult = await prisma.classified.aggregate({
-    where: {status: ClassifiedStatus.LIVE},
+    where: { status: ClassifiedStatus.LIVE },
     _min: {
       year: true,
       price: true,
@@ -51,11 +54,9 @@ export default async function InventoryPage(props: PageProps) {
     },
   });
 
-  
-
   const sourceId = await getSourceId();
   const favourites = await redis.get<Favourites>(sourceId ?? "");
-  const totalPages = Math.ceil(count / CLASSIFIEDS_PER_PAGE)
+  const totalPages = Math.ceil(count / CLASSIFIEDS_PER_PAGE);
 
   return (
     <div className="flex">
@@ -67,37 +68,42 @@ export default async function InventoryPage(props: PageProps) {
             <h2 className="text-sm md:text-base lg:text-xl font-semibold min-w-fit">
               We have found {count} classifieds
             </h2>
-          <DialogFilters
-          minMaxValues= {minMaxResult}
-          count= {count}
-          searchParams= {searchParams}
-          
-          />
+            <Suspense
+              fallback={
+                <div className="flex justify-center items-center h-screen">
+                  <Loader2 className="animate-spin" />
+                </div>
+              }
+            >
+
+              <DialogFilters
+                minMaxValues={minMaxResult}
+                count={count}
+                searchParams={searchParams}
+              />
+            </Suspense>
+
           </div>
 
           <CustomPagination
-						baseURL={routes.inventory}
-						totalPages={totalPages}
-						styles={{
-							paginationRoot: "justify-end hidden lg:flex",
-							paginationPrevious: "",
-							paginationNext: "",
-							paginationLink: "border-primary active:border text-black",
-							paginationLinkActive: "",
-						}}
-					/>
-         
+            baseURL={routes.inventory}
+            totalPages={totalPages}
+            styles={{
+              paginationRoot: "justify-end hidden lg:flex",
+              paginationPrevious: "",
+              paginationNext: "",
+              paginationLink: "border-primary active:border text-black",
+              paginationLinkActive: "",
+            }}
+          />
         </div>
 
-        <Suspense fallback={<InventorySkeleton/> }>
-           <ClassifiedsList
+        <Suspense fallback={<InventorySkeleton />}>
+          <ClassifiedsList
             classifieds={classifieds}
             favourites={favourites ? favourites.ids : []}
-
           />
         </Suspense>
-
-
 
         <CustomPagination
           baseURL={routes.inventory}

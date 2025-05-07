@@ -1,4 +1,6 @@
 import { SettingsPageContent } from "@/components/settings/content";
+import { Loader2 } from "lucide-react";
+import { Suspense } from "react";
 
 
 export default function SettingsPage() {
@@ -11,7 +13,15 @@ export default function SettingsPage() {
                     </h1>
                 </div>
             </div>
+        <Suspense
+                fallback={
+                  <div className="flex justify-center items-center h-screen">
+                    <Loader2 className="animate-spin" />
+                  </div>
+                }
+              >
       <SettingsPageContent />
+      </Suspense>    
         </>
     );
 }
