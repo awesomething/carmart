@@ -1,0 +1,88 @@
+import { navLinks } from "@/config/constants";
+import { routes } from "@/config/routes";
+import { SiInstagram, SiMeta, SiX } from "@icons-pack/react-simple-icons";
+import Image from "next/image";
+import Link from "next/link";
+import { NewsletterForm } from "../shared/newsletter-form";
+const socialLinks = [
+	{
+		id: 1,
+		href: "https://facebook.com",
+		icon: (
+			<SiMeta className="w-5 h-5 text-white hover:text-primary transition-colors" />
+		),
+	},
+	{
+		id: 2,
+		href: "https://twitter.com",
+		icon: (
+			<SiX className="w-5 h-5 text-white hover:text-primary transition-colors" />
+		),
+	},
+	{
+		id: 3,
+		href: "https://instagram.com",
+		icon: (
+			<SiInstagram className="w-5 h-5 text-white hover:text-primary transition-colors" />
+		),
+	},
+];
+export const PublicFooter = () => {
+	return (
+		<footer className="bg-black border-t border-muted px-8 lg:px-0 py-8">
+			<div className="container mx-auto grid grid-cols-1 md:grid-cols-3 gap-8">
+				<div className="flex flex-col space-x-2 gap-y-2">
+					<Link className="flex items-center" href={routes.home}>
+						<Image
+							width={300}
+							height={100}
+							alt="logo"
+							className="relative h-30 w-30"
+							src="/logo.png"
+						/>
+					</Link>
+					<div className="flex space-x-4">
+						{socialLinks.map((link) => {
+							return (
+								<Link href={link.href} key={link.id}>
+									{link.icon}
+								</Link>
+							);
+						})}
+					</div>
+				</div>
+
+				<ul className="space-y-1 ">
+					{navLinks.map((link) => (
+						<li key={link.id}>
+							<Link
+								href={link.href}
+								className=" hover:text-primary text-white"
+							>
+								{link.label}
+							</Link>
+						</li>
+					))}
+					<li>
+						<Link
+							href={routes.signIn}
+							className="text-white hover:text-primary"
+						>
+							Admin
+						</Link>
+					</li>
+				</ul>
+
+				<NewsletterForm />
+			</div>
+			<div className="container mx-auto mt-8 text-center">
+				<h4 className="text-lg font-bold text-primary">Company Info</h4>
+				<p>Company No. 123456789 | VAT No. NG123456789</p>
+				<p>
+					EazyDev Auto Dealership is not authorised and not regulated by the Financial
+					Conduct Authority
+				</p>
+			</div>
+		</footer>
+	);
+};
